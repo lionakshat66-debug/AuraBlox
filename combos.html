@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blox Fruits | Combo Guide</title>
+
+<style>
+
+/* =================================
+   GLOBAL
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f5f7ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.25), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(0, 229, 255, 0.13), transparent 26%),
+        linear-gradient(145deg, #050914 0%, #0a1020 45%, #07162c 100%);
+}
+
+
+/* =================================
+   BACKGROUND GRID
+================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+
+    mask-image: linear-gradient(to bottom, black, transparent);
+
+    z-index: -1;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    background: rgba(4, 8, 18, 0.8);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+}
+
+.header-inner {
+    width: min(1400px, 92%);
+    min-height: 78px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.logo {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.page-label {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+
+/* =================================
+   HERO
+================================= */
+
+.hero {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 75px 0 45px;
+
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 16px;
+
+    margin-bottom: 22px;
+
+    border-radius: 999px;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.22);
+
+    color: #7dd3fc;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 70px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #7dd3fc,
+            #38bdf8
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 720px;
+
+    margin: auto;
+
+    color: #9eacc2;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =================================
+   CONTAINER
+================================= */
+
+.container {
+    width: min(1250px, 92%);
+
+    margin: auto;
+}
+
+
+/* =================================
+   INTRO CARD
+================================= */
+
+.intro {
+    position: relative;
+
+    padding: 28px 30px;
+
+    margin-bottom: 28px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(56,189,248,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(56,189,248,0.15);
+
+    backdrop-filter: blur(14px);
+
+    overflow: hidden;
+}
+
+.intro::after {
+    content: "⚔";
+
+    position: absolute;
+
+    right: 25px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 75px;
+
+    opacity: 0.035;
+}
+
+.intro h2 {
+    color: #7dd3fc;
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+.intro p {
+    color: #a7b3c6;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+
+    max-width: 850px;
+}
+
+
+/* =================================
+   COMBO GRID
+================================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(310px, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =================================
+   COMBO CARD
+================================= */
+
+.card {
+    position: relative;
+
+    padding: 25px;
+
+    min-height: 350px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.18);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: -80px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background: rgba(56,189,248,0.055);
+
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(56,189,248,0.24);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(56,189,248,0.075),
+            rgba(255,255,255,0.03)
+        );
+}
+
+.card:hover::before {
+    transform: scale(1.45);
+}
+
+
+/* =================================
+   CARD TITLE
+================================= */
+
+.card h2 {
+    position: relative;
+    z-index: 1;
+
+    color: #f8fafc;
+
+    font-size: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =================================
+   MOVE SEQUENCE
+================================= */
+
+.combo {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 5px 0;
+}
+
+.move {
+    width: 100%;
+
+    padding: 9px 12px;
+
+    text-align: center;
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.move:hover {
+    background: rgba(56,189,248,0.08);
+
+    border-color: rgba(56,189,248,0.18);
+
+    color: #e0f2fe;
+}
+
+.arrow {
+    color: #38bdf8;
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    opacity: 0.75;
+}
+
+
+/* =================================
+   DIFFICULTY
+================================= */
+
+.difficulty {
+    align-self: flex-start;
+
+    margin-top: 20px;
+
+    padding: 7px 13px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =================================
+   SPECIAL TIP CARD
+================================= */
+
+.tip-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(56,189,248,0.09),
+            rgba(255,255,255,0.025)
+        );
+
+    border-color: rgba(56,189,248,0.18);
+}
+
+.tip-card .combo {
+    justify-content: center;
+}
+
+.tip-text {
+    color: #a7b3c6;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+
+/* =================================
+   BACK BUTTON
+================================= */
+
+.back {
+    text-align: center;
+
+    padding: 30px 0 65px;
+}
+
+.back a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 13px 23px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    color: #e0f2fe;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.2);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.back a:hover {
+    background: #38bdf8;
+
+    border-color: #38bdf8;
+
+    color: #03111d;
+
+    transform: translateY(-3px);
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+.footer {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.07);
+
+    background: rgba(2,6,15,0.75);
+}
+
+.footer p {
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: 8px;
+}
+
+
+/* =================================
+   SCROLLBAR
+================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050914;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e4f72;
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        min-height: 68px;
+    }
+
+    .page-label {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 0 40px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 0;
+
+        padding: 22px;
+    }
+
+    .intro {
+        padding: 23px;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+    }
+
+    .card {
+        border-radius: 17px;
+    }
+
+    .move {
+        font-size: 13px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     HEADER
+================================= -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="bloxfruit.html" class="logo">
+            BLOX <span>FRUITS</span>
+        </a>
+
+        <div class="page-label">
+            Combo Guide
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =================================
+     HERO
+================================= -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        ⚔️ PvP Combat
+    </div>
+
+    <h1>
+        BLOX FRUITS
+        <br>
+        COMBO GUIDE
+    </h1>
+
+    <p>
+        Explore popular PvP combo ideas, practice your timing,
+        and learn how different abilities can be chained together.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- =================================
+     INTRO
+================================= -->
+
+<div class="intro">
+
+    <h2>
+        About This Page
+    </h2>
+
+    <p>
+        This page contains popular PvP combo ideas for several fruits.
+        Practice timing and aim before using them in real battles.
+    </p>
+
+</div>
+
+
+<!-- =================================
+     COMBO GRID
+================================= -->
+
+<div class="grid">
+
+
+<!-- DOUGH 1 -->
+
+<div class="card">
+
+    <h2>🍩 Dough Combo #1</h2>
+
+    <div class="combo">
+
+        <div class="move">Spikey Trident X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Dough C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman Z</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Dough X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Dough V</div>
+
+    </div>
+
+    <div class="difficulty">
+        Medium
+    </div>
+
+</div>
+
+
+<!-- DOUGH 2 -->
+
+<div class="card">
+
+    <h2>🍩 Dough Combo #2</h2>
+
+    <div class="combo">
+
+        <div class="move">Dough X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman Z</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Spikey Trident X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Dough C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Dough V</div>
+
+    </div>
+
+    <div class="difficulty">
+        Hard
+    </div>
+
+</div>
+
+
+<!-- PORTAL -->
+
+<div class="card">
+
+    <h2>🌀 Portal Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Portal X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Shark Anchor X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman Z</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Portal Z</div>
+
+    </div>
+
+    <div class="difficulty">
+        Hard
+    </div>
+
+</div>
+
+
+<!-- ICE -->
+
+<div class="card">
+
+    <h2>❄️ Ice Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Ice V</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Ice C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">TTK X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman Z</div>
+
+    </div>
+
+    <div class="difficulty">
+        Easy
+    </div>
+
+</div>
+
+
+<!-- KITSUNE -->
+
+<div class="card">
+
+    <h2>🦊 Kitsune Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Kitsune C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman Z</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Kitsune X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Kitsune V</div>
+
+    </div>
+
+    <div class="difficulty">
+        Medium
+    </div>
+
+</div>
+
+
+<!-- DRAGON -->
+
+<div class="card">
+
+    <h2>🐉 Dragon Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Dragon C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">CDK X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Dragon X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Dragon V</div>
+
+    </div>
+
+    <div class="difficulty">
+        Hard
+    </div>
+
+</div>
+
+
+<!-- RUMBLE -->
+
+<div class="card">
+
+    <h2>⚡ Rumble Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Rumble X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Rumble C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">CDK X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+    </div>
+
+    <div class="difficulty">
+        Medium
+    </div>
+
+</div>
+
+
+<!-- FLAME -->
+
+<div class="card">
+
+    <h2>🔥 Flame Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Flame X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Flame C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman Z</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+    </div>
+
+    <div class="difficulty">
+        Easy
+    </div>
+
+</div>
+
+
+<!-- MAGMA -->
+
+<div class="card">
+
+    <h2>🌋 Magma Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Magma X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Magma C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Shark Anchor X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+    </div>
+
+    <div class="difficulty">
+        Easy
+    </div>
+
+</div>
+
+
+<!-- SWORD -->
+
+<div class="card">
+
+    <h2>⚔️ Sword Main Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Portal X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">CDK X</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">CDK Z</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+    </div>
+
+    <div class="difficulty">
+        Hard
+    </div>
+
+</div>
+
+
+<!-- GODHUMAN -->
+
+<div class="card">
+
+    <h2>🥋 Godhuman Combo</h2>
+
+    <div class="combo">
+
+        <div class="move">Godhuman Z</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman C</div>
+
+        <div class="arrow">↓</div>
+
+        <div class="move">Godhuman X</div>
+
+    </div>
+
+    <div class="difficulty">
+        Medium
+    </div>
+
+</div>
+
+
+<!-- TIP -->
+
+<div class="card tip-card">
+
+    <h2>🏆 PvP Tip</h2>
+
+    <div class="combo">
+
+        <p class="tip-text">
+            Use observation haki, predict movement,
+            avoid spamming moves and learn stun timing.
+            A good player wins more with timing than damage.
+        </p>
+
+    </div>
+
+    <div class="difficulty">
+        Important
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =================================
+     BACK
+================================= -->
+
+<div class="back">
+
+    <a href="bloxfruit.html">
+        ← Back To Blox Fruits
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- =================================
+     FOOTER
+================================= -->
+
+<footer class="footer">
+
+    <p>
+        Blox Fruits Ultimate Guide © 2026
+    </p>
+
+    <p>
+        Created By ARNAV MAURYA
+    </p>
+
+</footer>
+
+
+</body>
+</html>

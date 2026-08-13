@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aura Blox</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #07090e;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            height: 72px;
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            background: rgba(8, 11, 17, 0.92);
+            border-bottom: 1px solid #1a202b;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav a {
+            color: #969eae;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        nav a:hover {
+            color: #a78bfa;
+        }
+
+        .nav-button,
+        .nav-calculator,
+        .nav-exploits {
+            padding: 9px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-button {
+            background: #8b5cf6;
+            color: #ffffff !important;
+        }
+
+        .nav-button:hover {
+            background: #9b72f7;
+        }
+
+        .nav-calculator {
+            background: #10141d;
+            color: #c8cce0 !important;
+            border: 1px solid #292f3d;
+        }
+
+        .nav-calculator:hover {
+            border-color: #8b5cf6;
+            color: #ffffff !important;
+        }
+
+        .nav-exploits {
+            background: #11151f;
+            color: #cfc7ff !important;
+            border: 1px solid #34295a;
+        }
+
+        .nav-exploits:hover {
+            border-color: #8b5cf6;
+            background: #171327;
+            color: #ffffff !important;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 610px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(139, 92, 246, 0.15),
+                    transparent 45%
+                );
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background: rgba(139, 92, 246, 0.04);
+
+            filter: blur(20px);
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 15px;
+            margin-bottom: 25px;
+
+            border-radius: 30px;
+
+            border: 1px solid #29213c;
+            background: #100d17;
+
+            color: #a78bfa;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 88px);
+
+            line-height: 1;
+
+            font-weight: 900;
+
+            letter-spacing: -4px;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #8b5cf6;
+        }
+
+        .hero p {
+            max-width: 700px;
+
+            margin: 0 auto 35px;
+
+            color: #929bab;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 13px;
+
+            flex-wrap: wrap;
+        }
+
+        .primary-button,
+        .secondary-button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 25px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            transition: 0.25s ease;
+        }
+
+        .primary-button {
+            background: #8b5cf6;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 10px 30px rgba(139, 92, 246, 0.18);
+        }
+
+        .primary-button:hover {
+            transform: translateY(-3px);
+            background: #9b72f7;
+        }
+
+        .secondary-button {
+            background: #10141d;
+
+            color: #c1c7d2;
+
+            border: 1px solid #222b39;
+        }
+
+        .secondary-button:hover {
+            transform: translateY(-3px);
+
+            border-color: #8b5cf6;
+
+            color: #ffffff;
+        }
+
+        .exploit-button {
+            background: #151120;
+
+            color: #cfc4ff;
+
+            border: 1px solid #35275b;
+        }
+
+        .exploit-button:hover {
+            background: #1b1530;
+            border-color: #8b5cf6;
+        }
+
+        /* =========================
+           BLOX FRUIT SECTION
+        ========================= */
+
+        .blox-section {
+            padding: 90px 6%;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-label {
+            color: #8b5cf6;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 38px;
+
+            font-weight: 900;
+
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            max-width: 700px;
+
+            color: #858e9f;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            margin-bottom: 40px;
+        }
+
+        /* =========================
+           MAIN CARDS
+        ========================= */
+
+        .cards-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+        .main-card {
+            min-height: 360px;
+
+            padding: 35px;
+
+            background: #0e121a;
+
+            border: 1px solid #1d2633;
+
+            border-radius: 18px;
+
+            transition: 0.3s ease;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+        .main-card:hover {
+            transform: translateY(-5px);
+
+            border-color: #6040a8;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-top-icon {
+            width: 65px;
+
+            height: 65px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #171321;
+
+            border: 1px solid #30234a;
+
+            border-radius: 15px;
+
+            font-size: 32px;
+
+            margin-bottom: 25px;
+        }
+
+        .main-card h3 {
+            font-size: 25px;
+
+            margin-bottom: 12px;
+        }
+
+        .main-card p {
+            color: #858e9f;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .card-link {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: fit-content;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            background: #8b5cf6;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            transition: 0.25s ease;
+        }
+
+        .card-link:hover {
+            background: #9b72f7;
+
+            transform: translateY(-2px);
+        }
+
+        /* Calculator */
+
+        .calculator-card {
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(139, 92, 246, 0.12),
+                    transparent 55%
+                ),
+                #0e121a;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            margin-top: 18px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+        }
+
+        .feature {
+            padding: 18px;
+
+            background: #111722;
+
+            border: 1px solid #202a39;
+
+            border-radius: 11px;
+
+            transition: 0.25s ease;
+        }
+
+        .feature:hover {
+            border-color: #7651cf;
+
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 20px;
+
+            margin-bottom: 9px;
+        }
+
+        .feature h4 {
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: #747f91;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+        }
+
+        /* =========================
+           CREDITS
+        ========================= */
+
+        .credits {
+            padding: 0 6% 80px;
+        }
+
+        .credits-box {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 28px;
+
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(139, 92, 246, 0.08),
+                    transparent 50%
+                ),
+                #0d1118;
+
+            border: 1px solid #1c2532;
+
+            border-radius: 15px;
+
+            text-align: center;
+        }
+
+        .credits-box h3 {
+            font-size: 18px;
+
+            margin-bottom: 9px;
+        }
+
+        .credits-box p {
+            color: #747f91;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        .credits-box strong {
+            color: #a78bfa;
+        }
+
+        .email {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            color: #8b5cf6;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            transition: 0.25s ease;
+        }
+
+        .email:hover {
+            color: #b39aff;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 35px 20px;
+
+            text-align: center;
+
+            background: #080b11;
+
+            border-top: 1px solid #171f2b;
+        }
+
+        footer p {
+            color: #687284;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        footer strong {
+            color: #8b5cf6;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 0 20px;
+            }
+
+            nav {
+                gap: 6px;
+            }
+
+            nav a:not(.nav-button):not(.nav-calculator):not(.nav-exploits) {
+                display: none;
+            }
+
+            .nav-button,
+            .nav-calculator,
+            .nav-exploits {
+                padding: 8px 9px;
+
+                font-size: 10px;
+            }
+
+            .hero {
+                min-height: 550px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+
+                letter-spacing: -2px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .blox-section {
+                padding: 65px 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .credits {
+                padding: 0 20px 65px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .main-card {
+                padding: 28px;
+            }
+
+            .nav-button,
+            .nav-calculator,
+            .nav-exploits {
+                padding: 7px 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            Aura<span>Blox</span>
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="#blox-fruit">
+                Blox Fruit
+            </a>
+
+            <a
+                href="calculator.html"
+                class="nav-calculator"
+            >
+                Calculator
+            </a>
+
+            <a
+                href="exploits.html"
+                class="nav-exploits"
+            >
+                Exploits
+            </a>
+
+            <a
+                href="bloxfruit.html"
+                class="nav-button"
+            >
+                Blox Fruit Hub →
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                A NEW WAY TO EXPLORE BLOX FRUIT
+            </div>
+
+            <h1>
+                Welcome to <span>Aura Blox</span>
+            </h1>
+
+            <p>
+                Your next-generation Blox Fruit hub.
+                Discover information, guides, values,
+                trading tools and everything you need
+                in one place.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="bloxfruit.html"
+                    class="primary-button"
+                >
+                    Explore Blox Fruit →
+                </a>
+
+                <a
+                    href="calculator.html"
+                    class="secondary-button"
+                >
+                    Trade Calculator / Fruits
+                </a>
+
+                <a
+                    href="exploits.html"
+                    class="secondary-button exploit-button"
+                >
+                    Explore Exploits →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BLOX FRUIT SECTION
+    ========================= -->
+
+    <section
+        class="blox-section"
+        id="blox-fruit"
+    >
+
+        <div class="section-container">
+
+            <div class="section-label">
+                CURRENTLY AVAILABLE
+            </div>
+
+            <h2 class="section-title">
+                Blox Fruit
+            </h2>
+
+            <p class="section-description">
+                Aura Blox starts with Blox Fruit.
+                Explore the complete Blox Fruit hub,
+                or use our dedicated trade calculator
+                for the most-used and most-traded fruits.
+            </p>
+
+
+            <div class="cards-grid">
+
+
+                <!-- BLOX FRUIT HUB -->
+
+                <div class="main-card">
+
+                    <div>
+
+                        <div class="card-top-icon">
+                            🍎
+                        </div>
+
+                        <h3>
+                            Blox Fruit Hub
+                        </h3>
+
+                        <p>
+                            Explore the complete Blox Fruit
+                            section of Aura Blox. Find game
+                            information, guides, systems,
+                            fruits and more.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="bloxfruit.html"
+                        class="card-link"
+                    >
+                        Enter Blox Fruit Hub →
+                    </a>
+
+                </div>
+
+
+                <!-- TRADE CALCULATOR -->
+
+                <div class="main-card calculator-card">
+
+                    <div>
+
+                        <div class="card-top-icon">
+                            🧮
+                        </div>
+
+                        <h3>
+                            Trade Calculator / Fruits
+                        </h3>
+
+                        <p>
+                            Calculate trades using only the
+                            most-used and most-traded fruits.
+                            Check their values, demand,
+                            ratings and detailed AuraBlox reviews.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="calculator.html"
+                        class="card-link"
+                    >
+                        Open Calculator / Fruits →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CALCULATOR FEATURES -->
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🍏
+                    </div>
+
+                    <h4>
+                        Popular Fruits
+                    </h4>
+
+                    <p>
+                        Most-used fruits for trading.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        💰
+                    </div>
+
+                    <h4>
+                        Values
+                    </h4>
+
+                    <p>
+                        AuraBlox trading values.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⭐
+                    </div>
+
+                    <h4>
+                        Reviews & Ratings
+                    </h4>
+
+                    <p>
+                        Detailed fruit ratings.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⚖️
+                    </div>
+
+                    <h4>
+                        W / F / L
+                    </h4>
+
+                    <p>
+                        Compare your trades.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CREDITS
+    ========================= -->
+
+    <section class="credits">
+
+        <div class="credits-box">
+
+            <h3>
+                Aura Blox Credits
+            </h3>
+
+            <p>
+                Designed and developed by
+                <strong>Arnav Maurya</strong>.
+                Aura Blox is an independent community
+                project made for Blox Fruit players.
+            </p>
+
+            <a
+                href="mailto:YOUR-EMAIL-HERE"
+                class="email"
+            >
+                lionakshat66@gmail.com
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            © 2026 <strong>Aura Blox</strong>.
+            Built for the Blox Fruit community.
+            <br>
+            Independent fan-made project.
+        </p>
+
+    </footer>
+
+</body>
+</html>

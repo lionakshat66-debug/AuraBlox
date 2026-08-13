@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blox Fruits Items Guide</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:
+        radial-gradient(circle at top,#2563eb55,transparent 35%),
+        linear-gradient(135deg,#020617,#0f172a,#1e3a8a);
+    color:white;
+    min-height:100vh;
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    padding:45px 20px;
+    font-size:clamp(32px,5vw,58px);
+    font-weight:900;
+    letter-spacing:4px;
+    background:rgba(0,0,0,.45);
+    border-bottom:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+    text-shadow:0 0 20px #00e5ff66;
+}
+
+/* CONTAINER */
+
+.container{
+    width:92%;
+    max-width:1500px;
+    margin:auto;
+    padding:45px 0;
+}
+
+/* INTRO */
+
+.intro{
+    background:linear-gradient(
+        135deg,
+        rgba(0,229,255,.12),
+        rgba(255,255,255,.06)
+    );
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    border-radius:28px;
+    padding:35px;
+    margin-bottom:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.intro h2{
+    color:#00e5ff;
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.intro p{
+    line-height:1.8;
+    font-size:18px;
+    color:#dbeafe;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:25px;
+}
+
+/* ITEM CARD */
+
+.item{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.13),
+        rgba(255,255,255,.05)
+    );
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    transition:.35s ease;
+}
+
+/* glowing line */
+
+.item::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #00e5ff,
+        #2563eb,
+        transparent
+    );
+    opacity:.7;
+}
+
+/* hover */
+
+.item:hover{
+    transform:translateY(-10px);
+    border-color:#00e5ff88;
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.45),
+        0 0 25px rgba(0,229,255,.15);
+}
+
+/* TITLE */
+
+.item h3{
+    color:#ffd700;
+    font-size:23px;
+    margin-bottom:18px;
+}
+
+/* LIST */
+
+.item ul{
+    list-style:none;
+    padding:0;
+}
+
+.item li{
+    position:relative;
+    padding:9px 10px 9px 25px;
+    margin-bottom:4px;
+    color:#e2e8f0;
+    line-height:1.5;
+    border-radius:8px;
+    transition:.2s;
+}
+
+/* bullet */
+
+.item li::before{
+    content:"◆";
+    position:absolute;
+    left:5px;
+    color:#00e5ff;
+    font-size:9px;
+    top:13px;
+}
+
+/* list hover */
+
+.item li:hover{
+    background:rgba(255,255,255,.07);
+    color:white;
+    transform:translateX(5px);
+}
+
+/* TAG */
+
+.tag{
+    display:inline-block;
+    margin-top:18px;
+    padding:8px 16px;
+    border-radius:30px;
+    background:rgba(0,0,0,.4);
+    border:1px solid rgba(255,255,255,.15);
+    color:#00e5ff;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+/* BACK BUTTON */
+
+.back{
+    text-align:center;
+    margin-top:50px;
+    padding-bottom:20px;
+}
+
+.back a{
+    display:inline-block;
+    text-decoration:none;
+    color:#020617;
+    background:white;
+    padding:15px 32px;
+    border-radius:35px;
+    font-weight:bold;
+    font-size:16px;
+    transition:.3s;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+
+.back a:hover{
+    background:#00e5ff;
+    color:#020617;
+    transform:translateY(-4px);
+    box-shadow:0 0 25px #00e5ff88;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .header{
+        padding:35px 15px;
+        letter-spacing:2px;
+    }
+
+    .container{
+        width:94%;
+        padding:30px 0;
+    }
+
+    .intro{
+        padding:25px;
+    }
+
+    .intro h2{
+        font-size:24px;
+    }
+
+    .intro p{
+        font-size:16px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .item{
+        padding:23px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+📦 BLOX FRUITS ITEMS GUIDE
+</div>
+
+<div class="container">
+
+<div class="intro">
+
+<h2>⚔️ Everything Beyond Fruits</h2>
+
+<p>
+Explore the most important items in Blox Fruits, including
+swords, fighting styles, guns, races, accessories, materials,
+bosses, sea events, rare items and endgame equipment.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="item">
+
+<h3>⚔️ Best Swords</h3>
+
+<ul>
+<li>Cursed Dual Katana (CDK)</li>
+<li>Dark Blade</li>
+<li>True Triple Katana</li>
+<li>Shark Anchor</li>
+<li>Buddy Sword</li>
+<li>Tushita</li>
+<li>Yama</li>
+</ul>
+
+<div class="tag">WEAPONS</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>🥋 Fighting Styles</h3>
+
+<ul>
+<li>Combat</li>
+<li>Dark Step</li>
+<li>Electric</li>
+<li>Water Kung Fu</li>
+<li>Dragon Breath</li>
+<li>Superhuman</li>
+<li>Death Step</li>
+<li>Sharkman Karate</li>
+<li>Electric Claw</li>
+<li>Dragon Talon</li>
+<li>Godhuman</li>
+</ul>
+
+<div class="tag">COMBAT</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>🔫 Best Guns</h3>
+
+<ul>
+<li>Soul Guitar</li>
+<li>Acidum Rifle</li>
+<li>Bizarre Rifle</li>
+<li>Kabucha</li>
+<li>Serpent Bow</li>
+</ul>
+
+<div class="tag">RANGED</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>🧬 Races</h3>
+
+<ul>
+<li>Human</li>
+<li>Shark</li>
+<li>Angel</li>
+<li>Rabbit</li>
+<li>Ghoul</li>
+<li>Cyborg</li>
+</ul>
+
+<div class="tag">RACE V4</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>👑 Best Accessories</h3>
+
+<ul>
+<li>Pale Scarf</li>
+<li>Hunter Cape</li>
+<li>Dark Coat</li>
+<li>Swan Glasses</li>
+<li>Pilot Helmet</li>
+<li>Zebra Cap</li>
+</ul>
+
+<div class="tag">ACCESSORIES</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>📦 Important Materials</h3>
+
+<ul>
+<li>Dragon Scale</li>
+<li>Conjured Cocoa</li>
+<li>Fish Tail</li>
+<li>Mystic Droplet</li>
+<li>Magma Ore</li>
+<li>Leather</li>
+<li>Gunpowder</li>
+<li>Mini Tusk</li>
+</ul>
+
+<div class="tag">CRAFTING</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>👹 Important Bosses</h3>
+
+<ul>
+<li>Saber Expert</li>
+<li>Don Swan</li>
+<li>Order</li>
+<li>Cake Queen</li>
+<li>Beautiful Pirate</li>
+<li>Rip Indra</li>
+<li>Dough King</li>
+<li>Longma</li>
+</ul>
+
+<div class="tag">BOSSES</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>🌊 Sea Events</h3>
+
+<ul>
+<li>Terrorshark</li>
+<li>Shark Ship</li>
+<li>Piranha</li>
+<li>Sea Beast</li>
+<li>Ghost Ship</li>
+<li>Leviathan</li>
+</ul>
+
+<div class="tag">OCEAN</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>🏆 Popular Titles</h3>
+
+<ul>
+<li>The Strongest</li>
+<li>Pirate King</li>
+<li>Emperor</li>
+<li>Slayer</li>
+<li>Champion</li>
+<li>King Of The Seas</li>
+</ul>
+
+<div class="tag">TITLES</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>🏝️ Important Islands</h3>
+
+<ul>
+<li>Mirage Island</li>
+<li>Floating Turtle</li>
+<li>Hydra Island</li>
+<li>Great Tree</li>
+<li>Haunted Castle</li>
+<li>Sea Of Treats</li>
+</ul>
+
+<div class="tag">LOCATIONS</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>🎯 Endgame Goals</h3>
+
+<ul>
+<li>Max Level</li>
+<li>Race V4</li>
+<li>Godhuman</li>
+<li>Soul Guitar</li>
+<li>Cursed Dual Katana</li>
+<li>High Bounty</li>
+<li>Leviathan Rewards</li>
+</ul>
+
+<div class="tag">ENDGAME</div>
+
+</div>
+
+
+<div class="item">
+
+<h3>💎 Rare Items</h3>
+
+<ul>
+<li>Dark Blade</li>
+<li>Dark Fragment</li>
+<li>Fist Of Darkness</li>
+<li>God's Chalice</li>
+<li>Hallow Essence</li>
+<li>Sweet Chalice</li>
+</ul>
+
+<div class="tag">RARE</div>
+
+</div>
+
+
+</div>
+
+
+<div class="back">
+
+<a href="bloxfruit.html">
+⬅ Back To Home
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

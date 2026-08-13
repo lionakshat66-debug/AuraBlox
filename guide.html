@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blox Fruits | Complete Guide</title>
+
+<style>
+
+/* =================================
+   GLOBAL
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f5f7ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.25), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(0, 229, 255, 0.13), transparent 26%),
+        linear-gradient(145deg, #050914 0%, #0a1020 45%, #07162c 100%);
+}
+
+
+/* =================================
+   BACKGROUND GRID
+================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+
+    mask-image: linear-gradient(to bottom, black, transparent);
+
+    z-index: -1;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    background: rgba(4, 8, 18, 0.8);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+}
+
+.header-inner {
+    width: min(1400px, 92%);
+    min-height: 78px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.page-label {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+
+/* =================================
+   HERO
+================================= */
+
+.hero {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 75px 0 50px;
+
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 16px;
+
+    margin-bottom: 22px;
+
+    border-radius: 999px;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.22);
+
+    color: #7dd3fc;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 72px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #7dd3fc,
+            #38bdf8
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 730px;
+
+    margin: auto;
+
+    color: #9eacc2;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =================================
+   CONTAINER
+================================= */
+
+.container {
+    width: min(1150px, 92%);
+
+    margin: auto;
+}
+
+
+/* =================================
+   GUIDE SECTION
+================================= */
+
+.section {
+    position: relative;
+
+    padding: 32px;
+
+    margin-bottom: 22px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.2);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    top: -100px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(56,189,248,0.06);
+
+    transition: transform 0.4s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(56,189,248,0.24);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(56,189,248,0.07),
+            rgba(255,255,255,0.03)
+        );
+}
+
+.section:hover::before {
+    transform: scale(1.4);
+}
+
+
+/* =================================
+   SECTION HEADER
+================================= */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 27px;
+}
+
+.section-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 15px;
+
+    background: rgba(56,189,248,0.1);
+
+    border: 1px solid rgba(56,189,248,0.18);
+
+    font-size: 25px;
+}
+
+.section h2 {
+    color: #f8fafc;
+
+    font-size: 27px;
+
+    margin: 0;
+}
+
+.section-subtitle {
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+/* =================================
+   SUBHEADINGS
+================================= */
+
+.section h3 {
+    margin-top: 25px;
+    margin-bottom: 12px;
+
+    color: #7dd3fc;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+.section h3:first-of-type {
+    margin-top: 0;
+}
+
+
+/* =================================
+   TEXT
+================================= */
+
+.section p {
+    color: #a7b3c6;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* =================================
+   LISTS
+================================= */
+
+.section ul {
+    list-style: none;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 9px;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+.section li {
+    position: relative;
+
+    padding: 11px 14px 11px 34px;
+
+    color: #b7c3d6;
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.section li::before {
+    content: "›";
+
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #38bdf8;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+.section li:hover {
+    background: rgba(56,189,248,0.07);
+
+    border-color: rgba(56,189,248,0.14);
+
+    transform: translateX(3px);
+}
+
+
+/* =================================
+   COMBO LIST
+================================= */
+
+.combo-list {
+    display: grid;
+
+    gap: 10px;
+
+    list-style: none;
+}
+
+.combo-list li {
+    padding-left: 42px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(56,189,248,0.06),
+            rgba(255,255,255,0.025)
+        );
+}
+
+.combo-list li::before {
+    content: "⚔";
+
+    left: 14px;
+
+    font-size: 15px;
+}
+
+
+/* =================================
+   TIER LIST
+================================= */
+
+.tier {
+    display: grid;
+
+    grid-template-columns: 80px 1fr;
+
+    align-items: stretch;
+
+    margin-top: 13px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.tier:first-of-type {
+    margin-top: 0;
+}
+
+.tier-label {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 900;
+
+    font-size: 17px;
+
+    background: rgba(56,189,248,0.1);
+
+    color: #7dd3fc;
+}
+
+.tier-content {
+    padding: 14px 17px;
+
+    background: rgba(255,255,255,0.035);
+
+    color: #cbd5e1;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+}
+
+
+/* =================================
+   BACK BUTTON
+================================= */
+
+.back {
+    text-align: center;
+
+    padding: 20px 0 65px;
+}
+
+.back a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 13px 23px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    color: #e0f2fe;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.2);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.back a:hover {
+    background: #38bdf8;
+
+    border-color: #38bdf8;
+
+    color: #03111d;
+
+    transform: translateY(-3px);
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+.footer {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.07);
+
+    background: rgba(2,6,15,0.75);
+}
+
+.footer p {
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: 8px;
+}
+
+
+/* =================================
+   SCROLLBAR
+================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050914;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e4f72;
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        min-height: 68px;
+    }
+
+    .page-label {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 0 40px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .section {
+        padding: 23px;
+    }
+
+    .section h2 {
+        font-size: 22px;
+    }
+
+    .section p {
+        font-size: 15px;
+    }
+
+    .section ul {
+        grid-template-columns: 1fr;
+    }
+
+    .tier {
+        grid-template-columns: 60px 1fr;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+    }
+
+    .section {
+        border-radius: 17px;
+        padding: 20px;
+    }
+
+    .section-header {
+        gap: 11px;
+    }
+
+    .section-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 21px;
+    }
+
+    .tier {
+        grid-template-columns: 52px 1fr;
+    }
+
+    .tier-label {
+        font-size: 15px;
+    }
+
+    .tier-content {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     HEADER
+================================= -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="bloxfruit.html" class="logo">
+            BLOX <span>FRUITS</span>
+        </a>
+
+        <div class="page-label">
+            Complete Guide
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =================================
+     HERO
+================================= -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        📚 Complete Guide
+    </div>
+
+    <h1>
+        BLOX FRUITS
+        <br>
+        COMPLETE GUIDE
+    </h1>
+
+    <p>
+        Explore the different seas, discover useful progression tips,
+        learn popular PvP combinations, and understand the game's
+        major content.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- =================================
+     FIRST SEA
+================================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div class="section-icon">
+            🌊
+        </div>
+
+        <div>
+            <h2>First Sea</h2>
+
+            <div class="section-subtitle">
+                Start your journey
+            </div>
+        </div>
+
+    </div>
+
+
+    <h3>Best Fruits</h3>
+
+    <ul>
+
+        <li>Light</li>
+        <li>Ice</li>
+        <li>Magma</li>
+        <li>Buddha</li>
+
+    </ul>
+
+
+    <h3>Grinding Tips</h3>
+
+    <p>
+        Focus on completing quests and defeating NPCs.
+        Light and Buddha are excellent for fast leveling.
+    </p>
+
+
+    <h3>Important Bosses</h3>
+
+    <ul>
+
+        <li>Gorilla King</li>
+        <li>Vice Admiral</li>
+        <li>Saber Expert</li>
+        <li>Warden</li>
+
+    </ul>
+
+</section>
+
+
+<!-- =================================
+     SECOND SEA
+================================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div class="section-icon">
+            🌊
+        </div>
+
+        <div>
+            <h2>Second Sea</h2>
+
+            <div class="section-subtitle">
+                Unlock advanced content
+            </div>
+        </div>
+
+    </div>
+
+
+    <h3>What Unlocks Here?</h3>
+
+    <ul>
+
+        <li>Trading</li>
+        <li>Factory Raid</li>
+        <li>Race V2</li>
+        <li>Better Boss Drops</li>
+
+    </ul>
+
+
+    <h3>Best Fruits</h3>
+
+    <ul>
+
+        <li>Buddha</li>
+        <li>Magma</li>
+        <li>Blizzard</li>
+        <li>Portal</li>
+
+    </ul>
+
+</section>
+
+
+<!-- =================================
+     THIRD SEA
+================================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div class="section-icon">
+            🌊
+        </div>
+
+        <div>
+            <h2>Third Sea</h2>
+
+            <div class="section-subtitle">
+                Endgame progression
+            </div>
+        </div>
+
+    </div>
+
+
+    <h3>Endgame Content</h3>
+
+    <ul>
+
+        <li>Race V4</li>
+        <li>Leviathan</li>
+        <li>Soul Guitar</li>
+        <li>Cursed Dual Katana</li>
+
+    </ul>
+
+
+    <h3>Best Fruits</h3>
+
+    <ul>
+
+        <li>Kitsune</li>
+        <li>Dragon</li>
+        <li>Dough</li>
+        <li>Tiger</li>
+
+    </ul>
+
+</section>
+
+
+<!-- =================================
+     PVP COMBOS
+================================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div class="section-icon">
+            ⚔️
+        </div>
+
+        <div>
+            <h2>Popular PvP Combos</h2>
+
+            <div class="section-subtitle">
+                Popular combat combinations
+            </div>
+        </div>
+
+    </div>
+
+
+    <ul class="combo-list">
+
+        <li>
+            Dough Stun → Godhuman Combo → Dough Finish
+        </li>
+
+        <li>
+            Portal Pull → Shark Anchor → Godhuman
+        </li>
+
+        <li>
+            Ice Freeze → Sword Combo → Finisher
+        </li>
+
+        <li>
+            Kitsune Dash → Godhuman → Kitsune Finish
+        </li>
+
+        <li>
+            Dragon Stun → CDK Combo → Dragon Finish
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- =================================
+     TIER LIST
+================================= -->
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div class="section-icon">
+            🏆
+        </div>
+
+        <div>
+            <h2>Tier List</h2>
+
+            <div class="section-subtitle">
+                Fruit tiers listed in this guide
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="tier">
+
+        <div class="tier-label">
+            S
+        </div>
+
+        <div class="tier-content">
+            Kitsune, Dragon, Dough, Tiger
+        </div>
+
+    </div>
+
+
+    <div class="tier">
+
+        <div class="tier-label">
+            A
+        </div>
+
+        <div class="tier-content">
+            Portal, Gas, Ice, Magma
+        </div>
+
+    </div>
+
+
+    <div class="tier">
+
+        <div class="tier-label">
+            B
+        </div>
+
+        <div class="tier-content">
+            Flame, Sand, Rubber
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     BACK
+================================= -->
+
+<div class="back">
+
+    <a href="bloxfruit.html">
+        ← Back To Blox Fruits
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- =================================
+     FOOTER
+================================= -->
+
+<footer class="footer">
+
+    <p>
+        Blox Fruits Ultimate Guide © 2026
+    </p>
+
+    <p>
+        Created By ARNAV MAURYA
+    </p>
+
+</footer>
+
+
+</body>
+</html>

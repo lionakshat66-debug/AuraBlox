@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blox Fruits | Redeem Codes</title>
+
+<style>
+
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f5f7ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.25), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(0, 229, 255, 0.13), transparent 25%),
+        linear-gradient(145deg, #050914 0%, #0a1020 45%, #07162c 100%);
+}
+
+
+/* ================================
+   BACKGROUND GRID
+================================ */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+
+    mask-image: linear-gradient(to bottom, black, transparent);
+
+    z-index: -1;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    background: rgba(4, 8, 18, 0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+}
+
+.header-inner {
+    width: min(1400px, 92%);
+    min-height: 78px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.page-label {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 75px 0 45px;
+
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 16px;
+    margin-bottom: 22px;
+
+    border-radius: 999px;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.22);
+
+    color: #7dd3fc;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 70px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #7dd3fc,
+            #38bdf8
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #9eacc2;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* ================================
+   CONTAINER
+================================ */
+
+.container {
+    width: min(1200px, 92%);
+    margin: auto;
+}
+
+
+/* ================================
+   CARD
+================================ */
+
+.card {
+    position: relative;
+
+    padding: 30px;
+
+    margin-bottom: 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.2);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: -80px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background: rgba(56,189,248,0.07);
+
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(56,189,248,0.24);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(56,189,248,0.075),
+            rgba(255,255,255,0.03)
+        );
+}
+
+.card:hover::before {
+    transform: scale(1.4);
+}
+
+
+/* ================================
+   CARD HEADER
+================================ */
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: rgba(56,189,248,0.1);
+
+    border: 1px solid rgba(56,189,248,0.17);
+
+    font-size: 22px;
+}
+
+.card h2 {
+    color: #f8fafc;
+
+    font-size: 22px;
+}
+
+.card p {
+    color: #a7b3c6;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+
+/* ================================
+   CODE TABLE
+================================ */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+table {
+    width: 100%;
+
+    min-width: 600px;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 16px 18px;
+
+    text-align: left;
+
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+th {
+    background: rgba(56,189,248,0.08);
+
+    color: #7dd3fc;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+td {
+    color: #cbd5e1;
+
+    font-size: 14px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: rgba(56,189,248,0.06);
+}
+
+
+/* ================================
+   CODE TEXT
+================================ */
+
+.code {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 7px;
+
+    background: rgba(0,0,0,0.3);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: #e0f2fe;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.reward {
+    color: #a5f3fc;
+}
+
+
+/* ================================
+   LISTS
+================================ */
+
+ul,
+ol {
+    padding-left: 22px;
+}
+
+li {
+    color: #a7b3c6;
+
+    line-height: 1.8;
+
+    margin-bottom: 9px;
+}
+
+li::marker {
+    color: #38bdf8;
+}
+
+.steps li {
+    padding-left: 5px;
+}
+
+
+/* ================================
+   TIP BOX
+================================ */
+
+.tip-box {
+    margin-top: 5px;
+
+    padding: 18px 20px;
+
+    border-radius: 13px;
+
+    background: rgba(56,189,248,0.055);
+
+    border: 1px solid rgba(56,189,248,0.13);
+
+    color: #a9b8cc;
+
+    line-height: 1.7;
+}
+
+.tip-box strong {
+    color: #7dd3fc;
+}
+
+
+/* ================================
+   BACK BUTTON
+================================ */
+
+.back {
+    text-align: center;
+
+    padding: 15px 0 60px;
+}
+
+.back a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 13px 23px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    color: #e0f2fe;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.2);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.back a:hover {
+    background: #38bdf8;
+
+    border-color: #38bdf8;
+
+    color: #03111d;
+
+    transform: translateY(-3px);
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.07);
+
+    background: rgba(2,6,15,0.75);
+}
+
+.footer p {
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-top: 8px;
+}
+
+
+/* ================================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050914;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e4f72;
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        min-height: 68px;
+    }
+
+    .page-label {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 0 35px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+
+    th,
+    td {
+        padding: 13px 14px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+    }
+
+    .card {
+        border-radius: 16px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================================
+     HEADER
+================================ -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="bloxfruit.html" class="logo">
+            BLOX <span>FRUITS</span>
+        </a>
+
+        <div class="page-label">
+            Redeem Codes
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     HERO
+================================ -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        🎁 Rewards & Codes
+    </div>
+
+    <h1>
+        REDEEM CODES
+    </h1>
+
+    <p>
+        Find useful Blox Fruits codes, understand their rewards,
+        and learn how to redeem them correctly.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ================================
+     IMPORTANT
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            📢
+        </div>
+
+        <h2>Important</h2>
+
+    </div>
+
+    <p>
+        Codes can expire at any time. If a code does not work,
+        it may have expired or already been used on your account.
+    </p>
+
+</div>
+
+
+<!-- ================================
+     WORKING CODES
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            ✅
+        </div>
+
+        <h2>Popular Working Codes</h2>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Code</th>
+                    <th>Reward</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><span class="code">EASTEREXP</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">LIGHTNINGABUSE</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">KITT_RESET</span></td>
+                    <td class="reward">Stat Reset</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">SUB2GAMERROBOT_RESET1</span></td>
+                    <td class="reward">Stat Reset</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">Axiore</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">Bluxxy</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">Enyu_is_Pro</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">JCWK</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">MagicBus</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">STARCODEHEO</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">SUB2FER999</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">SUB2GAMERROBOT_EXP1</span></td>
+                    <td class="reward">2x EXP Boost</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">BIGNEWS</span></td>
+                    <td class="reward">Free Title</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">FUDD10</span></td>
+                    <td class="reward">Free Beli</td>
+                </tr>
+
+                <tr>
+                    <td><span class="code">FUDD10_V2</span></td>
+                    <td class="reward">Free Beli</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     REWARDS
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🎁
+        </div>
+
+        <h2>Rewards Explained</h2>
+
+    </div>
+
+    <ul>
+
+        <li>
+            <strong>2x EXP</strong> = Faster leveling
+        </li>
+
+        <li>
+            <strong>Stat Reset</strong> = Rebuild your stats
+        </li>
+
+        <li>
+            <strong>Beli</strong> = In-game currency
+        </li>
+
+        <li>
+            <strong>Title</strong> = Cosmetic achievement title
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- ================================
+     HOW TO REDEEM
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            📝
+        </div>
+
+        <h2>How To Redeem Codes</h2>
+
+    </div>
+
+    <ol class="steps">
+
+        <li>Open Blox Fruits.</li>
+
+        <li>Click the Gift icon on the left side.</li>
+
+        <li>Enter a code exactly as written.</li>
+
+        <li>Press Redeem.</li>
+
+        <li>Enjoy your reward.</li>
+
+    </ol>
+
+</div>
+
+
+<!-- ================================
+     TIPS
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            💡
+        </div>
+
+        <h2>Tips</h2>
+
+    </div>
+
+    <ul>
+
+        <li>
+            Use EXP codes when grinding.
+        </li>
+
+        <li>
+            Stack multiple EXP boosts before long sessions.
+        </li>
+
+        <li>
+            Save stat resets for major build changes.
+        </li>
+
+        <li>
+            Check for new codes after updates.
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- ================================
+     BACK
+================================ -->
+
+<div class="back">
+
+    <a href="bloxfruit.html">
+        ← Back To Blox Fruits
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================ -->
+
+<footer class="footer">
+
+    <p>
+        Blox Fruits Ultimate Guide © 2026
+    </p>
+
+    <p>
+        Created By ARNAV MAURYA
+    </p>
+
+</footer>
+
+
+</body>
+</html>

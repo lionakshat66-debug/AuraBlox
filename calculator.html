@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070a11">
+<title>AuraBlox Trade Calculator</title>
+
+<style>
+:root{
+--bg:#070a11;
+--bg2:#0b101b;
+--panel:#101725;
+--panel2:#151e2e;
+--border:#253149;
+--text:#f4f7ff;
+--muted:#8d99ae;
+--accent:#7657ff;
+--accent2:#00d9ff;
+--green:#25d889;
+--red:#ff5268;
+--yellow:#ffc857;
+--shadow:0 18px 50px rgba(0,0,0,.28)
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+html{
+scroll-behavior:smooth
+}
+
+body{
+min-height:100vh;
+color:var(--text);
+background:
+radial-gradient(circle at 10% 0%,rgba(118,87,255,.16),transparent 30%),
+radial-gradient(circle at 90% 10%,rgba(0,217,255,.1),transparent 28%),
+var(--bg);
+font-family:Inter,Arial,Helvetica,sans-serif
+}
+
+button,input,select{
+font:inherit
+}
+
+button{
+cursor:pointer
+}
+
+.app{
+width:min(1450px,94%);
+margin:auto
+}
+
+header{
+padding:32px 0 25px;
+border-bottom:1px solid var(--border)
+}
+
+.brand{
+font-size:clamp(28px,4vw,42px);
+font-weight:950;
+letter-spacing:-1.5px
+}
+
+.brand span{
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent
+}
+
+.subtitle{
+color:var(--muted);
+margin-top:7px;
+font-size:14px
+}
+
+.market-note{
+margin:18px 0 0;
+padding:14px 16px;
+background:rgba(255,200,87,.06);
+border:1px solid rgba(255,200,87,.22);
+border-radius:14px;
+color:var(--muted);
+font-size:12px;
+line-height:1.55
+}
+
+.market-note strong{
+color:var(--yellow)
+}
+
+.toolbar{
+display:flex;
+gap:10px;
+margin:22px 0;
+flex-wrap:wrap;
+position:sticky;
+top:0;
+z-index:20;
+padding:12px 0;
+background:rgba(7,10,17,.9);
+backdrop-filter:blur(14px)
+}
+
+.search{
+flex:1;
+min-width:230px;
+background:var(--panel);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:13px;
+padding:13px 16px;
+outline:none
+}
+
+.search:focus{
+border-color:var(--accent)
+}
+
+.select,.btn{
+background:var(--panel);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:13px;
+padding:12px 15px;
+outline:none
+}
+
+.select:focus,.btn:hover{
+border-color:var(--accent)
+}
+
+.section-title{
+margin:30px 0 15px;
+font-size:21px;
+font-weight:850
+}
+
+.trade-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px
+}
+
+.trade-box{
+background:
+linear-gradient(145deg,rgba(118,87,255,.07),transparent 45%),
+var(--panel);
+border:1px solid var(--border);
+border-radius:20px;
+padding:20px;
+min-height:300px;
+box-shadow:var(--shadow)
+}
+
+.trade-box:first-child{
+border-top:2px solid var(--accent2)
+}
+
+.trade-box:last-child{
+border-top:2px solid var(--red)
+}
+
+.trade-box h2{
+font-size:18px;
+margin-bottom:18px
+}
+
+.offer-items{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+min-height:145px
+}
+
+.empty{
+width:100%;
+color:var(--muted);
+text-align:center;
+padding:48px 10px;
+border:1px dashed var(--border);
+border-radius:14px
+}
+
+.offer-item{
+position:relative;
+min-width:145px;
+background:var(--panel2);
+border:1px solid var(--border);
+border-radius:13px;
+padding:12px
+}
+
+.offer-item-name{
+font-weight:800;
+padding-right:15px
+}
+
+.offer-item-value{
+color:var(--accent2);
+font-size:13px;
+margin-top:4px
+}
+
+.remove-item{
+position:absolute;
+top:5px;
+right:6px;
+border:0;
+background:transparent;
+color:var(--muted);
+font-size:16px
+}
+
+.total{
+display:flex;
+justify-content:space-between;
+border-top:1px solid var(--border);
+margin-top:16px;
+padding-top:15px;
+font-size:18px;
+font-weight:800
+}
+
+.total span{
+color:var(--accent2)
+}
+
+.result{
+margin:20px 0;
+background:
+radial-gradient(circle at 50% 0%,rgba(118,87,255,.13),transparent 55%),
+var(--panel);
+border:1px solid var(--border);
+border-radius:20px;
+padding:25px;
+text-align:center;
+box-shadow:var(--shadow)
+}
+
+.result-label{
+color:var(--muted);
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:1.5px
+}
+
+.result-value{
+font-size:clamp(30px,5vw,48px);
+font-weight:950;
+margin:8px 0
+}
+
+.result-win{
+color:var(--green)
+}
+
+.result-fair{
+color:var(--yellow)
+}
+
+.result-lose{
+color:var(--red)
+}
+
+.result-neutral{
+color:var(--muted)
+}
+
+#tradeDifference{
+color:var(--muted)
+}
+
+.fruit-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+gap:15px;
+padding-bottom:50px
+}
+
+.fruit-card{
+position:relative;
+overflow:hidden;
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:18px;
+padding:18px;
+transition:.2s
+}
+
+.fruit-card:hover{
+transform:translateY(-4px);
+border-color:var(--accent);
+box-shadow:var(--shadow)
+}
+
+.fruit-name{
+font-size:19px;
+font-weight:900
+}
+
+.fruit-meta{
+color:var(--muted);
+font-size:13px;
+margin-top:6px
+}
+
+.fruit-value{
+margin-top:13px;
+font-size:20px;
+font-weight:900;
+color:var(--accent2)
+}
+
+.trend-up{
+color:var(--green)
+}
+
+.trend-down{
+color:var(--red)
+}
+
+.trend-flat{
+color:var(--yellow)
+}
+
+.rating{
+margin-top:12px;
+font-weight:800
+}
+
+.rating-bar{
+height:6px;
+background:#20293a;
+border-radius:20px;
+margin-top:7px;
+overflow:hidden
+}
+
+.rating-fill{
+height:100%;
+width:0;
+background:linear-gradient(90deg,var(--accent),var(--accent2));
+border-radius:inherit
+}
+
+.spec-list{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-top:14px
+}
+
+.spec{
+background:rgba(255,255,255,.025);
+border:1px solid rgba(255,255,255,.05);
+border-radius:9px;
+padding:8px;
+font-size:12px
+}
+
+.spec-label{
+color:var(--muted);
+display:block
+}
+
+.spec-value{
+font-weight:800;
+display:block;
+margin-top:2px
+}
+
+.spec .rating-bar{
+height:5px;
+margin-top:5px
+}
+
+.review{
+color:var(--muted);
+font-size:13px;
+line-height:1.55;
+margin-top:13px
+}
+
+.card-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-top:15px
+}
+
+.add-btn,.review-btn{
+border:1px solid var(--border);
+border-radius:10px;
+background:var(--panel2);
+color:var(--text);
+padding:9px;
+transition:.2s
+}
+
+.add-btn:hover{
+background:var(--accent);
+border-color:var(--accent)
+}
+
+.add-btn.their:hover{
+background:var(--red);
+border-color:var(--red)
+}
+
+.review-btn{
+width:100%;
+margin-top:8px;
+background:transparent;
+color:var(--muted)
+}
+
+.review-btn:hover{
+color:var(--text);
+border-color:var(--accent)
+}
+
+.no-results{
+text-align:center;
+color:var(--muted);
+padding:60px 20px;
+border:1px dashed var(--border);
+border-radius:18px
+}
+
+.modal{
+position:fixed;
+inset:0;
+z-index:100;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(8px)
+}
+
+.modal-box{
+width:min(760px,100%);
+max-height:90vh;
+overflow-y:auto;
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:20px;
+padding:25px;
+box-shadow:var(--shadow)
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+gap:15px;
+align-items:center;
+margin-bottom:18px
+}
+
+.modal-close{
+border:0;
+background:transparent;
+color:var(--muted);
+font-size:25px
+}
+
+.modal-close:hover{
+color:var(--text)
+}
+
+.modal-review{
+color:var(--muted);
+line-height:1.7
+}
+
+.modal-specs{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:18px
+}
+
+.modal-spec{
+background:var(--panel2);
+border:1px solid var(--border);
+border-radius:12px;
+padding:12px
+}
+
+.modal-spec small{
+color:var(--muted);
+display:block
+}
+
+.modal-spec strong{
+display:block;
+margin-top:3px
+}
+
+.hidden{
+display:none!important
+}
+
+footer{
+border-top:1px solid var(--border);
+padding:25px 0 40px;
+color:var(--muted);
+font-size:12px;
+text-align:center
+}
+
+@media(max-width:800px){
+.trade-grid{
+grid-template-columns:1fr
+}
+
+.toolbar{
+position:static
+}
+}
+
+@media(max-width:520px){
+.app{
+width:92%
+}
+
+.toolbar{
+display:grid;
+grid-template-columns:1fr 1fr
+}
+
+.search{
+grid-column:1/-1;
+min-width:0
+}
+
+.fruit-grid{
+grid-template-columns:1fr
+}
+
+.modal-specs{
+grid-template-columns:1fr
+}
+
+.trade-box{
+padding:15px
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+<div class="brand">Aura<span>Blox</span></div>
+
+<div class="subtitle">
+Trade Calculator • Fruits • Perm Fruits • Gamepasses
+</div>
+
+<div class="market-note">
+<strong>Market snapshot: August 2026.</strong>
+AuraBlox trade values are community-market estimates, not official Blox Fruits prices.
+Community values can change after balance patches, reworks and demand swings.
+Permanent fruits and gamepasses use separate market values.
+Shop prices and trade values are different.
+</div>
+</header>
+
+<section class="toolbar">
+
+<input
+id="searchInput"
+class="search"
+type="search"
+placeholder="Search fruits, permanent fruits, or gamepasses..."
+autocomplete="off"
+>
+
+<select id="categoryFilter" class="select">
+<option value="all">All Items</option>
+<option value="Physical Fruit">Physical Fruits</option>
+<option value="Permanent Fruit">Permanent Fruits</option>
+<option value="Gamepass">Gamepasses</option>
+</select>
+
+<select id="rarityFilter" class="select">
+<option value="all">All Rarities</option>
+<option value="Common">Common</option>
+<option value="Uncommon">Uncommon</option>
+<option value="Rare">Rare</option>
+<option value="Legendary">Legendary</option>
+<option value="Mythical">Mythical</option>
+<option value="Gamepass">Gamepass</option>
+</select>
+
+<select id="sortFilter" class="select">
+<option value="name">Name</option>
+<option value="valueHigh">Trade Value: High → Low</option>
+<option value="valueLow">Trade Value: Low → High</option>
+<option value="rating">Overall Rating</option>
+<option value="demand">Demand</option>
+</select>
+
+<!-- BACK BUTTON ADDED -->
+<button class="btn" onclick="window.location.href='index.html'">
+← Back to AuraBlox
+</button>
+
+<button class="btn" onclick="clearTrade()">
+Clear Trade
+</button>
+
+</section>
+
+<h2 class="section-title">⚖️ Trade Calculator</h2>
+
+<div class="trade-grid">
+
+<div class="trade-box">
+
+<h2>🟦 Your Offer</h2>
+
+<div id="yourOffer" class="offer-items">
+<div class="empty">
+Add fruits from the database below.
+</div>
+</div>
+
+<div class="total">
+Total:
+<span id="yourTotal">0</span>
+</div>
+
+</div>
+
+<div class="trade-box">
+
+<h2>🟥 Their Offer</h2>
+
+<div id="theirOffer" class="offer-items">
+<div class="empty">
+Add fruits from the database below.
+</div>
+</div>
+
+<div class="total">
+Total:
+<span id="theirTotal">0</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="result">
+
+<div class="result-label">
+Trade Result
+</div>
+
+<div id="tradeResult" class="result-value result-neutral">
+Add items
+</div>
+
+<div id="tradeDifference">
+Difference: 0
+</div>
+
+</div>
+
+<h2 class="section-title">🍎 Items Database</h2>
+
+<div id="fruitGrid" class="fruit-grid"></div>
+
+</div>
+
+<div id="reviewModal" class="modal hidden" onclick="closeReview(event)">
+
+<div class="modal-box" onclick="event.stopPropagation()">
+
+<div class="modal-header">
+
+<div>
+
+<h2 id="modalTitle">
+Fruit Review
+</h2>
+
+<div id="modalMeta" class="fruit-meta"></div>
+
+</div>
+
+<button class="modal-close" onclick="closeReview()">
+×
+</button>
+
+</div>
+
+<div id="modalValue" class="fruit-value"></div>
+
+<div id="modalTrend" style="margin-top:8px"></div>
+
+<div id="modalReview" class="modal-review" style="margin-top:18px"></div>
+
+<h3 style="margin-top:22px">
+⭐ AuraBlox Ratings — Every Spec
+</h3>
+
+<div id="modalSpecs" class="modal-specs"></div>
+
+<div id="modalAdvice" class="market-note" style="margin-top:18px"></div>
+
+</div>
+
+</div>
+
+<footer>
+AuraBlox Trade Calculator • Physical Fruits • Permanent Fruits • Gamepasses • Market data is an estimate
+</footer>
+
+<script>
+
+const fruits = [{"name":"Rocket","rarity":"Common","type":"Natural","value":5000,"demand":3.0,"trend":"stable","pvp":6.1,"grinding":6.5,"mobility":5.9,"damage":6.0,"combo":6.2,"versatility":6.1,"ease":6.4,"overall":5.7,"review":"Rocket is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Spin","rarity":"Common","type":"Natural","value":7500,"demand":3.2,"trend":"stable","pvp":6.2,"grinding":6.6,"mobility":6.0,"damage":6.1,"combo":6.3,"versatility":6.2,"ease":6.5,"overall":5.8,"review":"Spin is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Blade","rarity":"Common","type":"Natural","value":30000,"demand":3.5,"trend":"stable","pvp":6.3,"grinding":6.7,"mobility":6.1,"damage":6.2,"combo":6.4,"versatility":6.3,"ease":6.6,"overall":5.9,"review":"Blade is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Spring","rarity":"Common","type":"Natural","value":60000,"demand":3.8,"trend":"stable","pvp":6.4,"grinding":6.8,"mobility":6.2,"damage":6.3,"combo":6.5,"versatility":6.4,"ease":6.7,"overall":6.1,"review":"Spring is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Bomb","rarity":"Common","type":"Natural","value":80000,"demand":4.4,"trend":"rising","pvp":6.8,"grinding":7.5,"mobility":6.0,"damage":6.5,"combo":7.5,"versatility":7.8,"ease":8.2,"overall":6.8,"review":"Reworked Bomb with updated abilities and improved combat utility."},{"name":"Smoke","rarity":"Common","type":"Elemental","value":100000,"demand":4.8,"trend":"stable","pvp":6.8,"grinding":7.2,"mobility":6.6,"damage":6.7,"combo":6.9,"versatility":6.8,"ease":7.1,"overall":6.6,"review":"Smoke is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Spike","rarity":"Common","type":"Natural","value":180000,"demand":5.0,"trend":"stable","pvp":6.9,"grinding":7.3,"mobility":6.7,"damage":6.8,"combo":7.0,"versatility":6.9,"ease":7.2,"overall":6.7,"review":"Spike is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Flame","rarity":"Uncommon","type":"Elemental","value":250000,"demand":6.2,"trend":"stable","pvp":7.4,"grinding":7.8,"mobility":7.2,"damage":7.3,"combo":7.5,"versatility":7.4,"ease":7.7,"overall":7.3,"review":"Flame is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Ice","rarity":"Uncommon","type":"Elemental","value":350000,"demand":6.8,"trend":"stable","pvp":7.6,"grinding":8.0,"mobility":7.4,"damage":7.5,"combo":7.7,"versatility":7.6,"ease":7.9,"overall":7.5,"review":"Ice is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Sand","rarity":"Uncommon","type":"Elemental","value":420000,"demand":5.7,"trend":"stable","pvp":7.2,"grinding":7.6,"mobility":7.0,"damage":7.1,"combo":7.3,"versatility":7.2,"ease":7.5,"overall":7.0,"review":"Sand is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Dark","rarity":"Uncommon","type":"Elemental","value":500000,"demand":6.4,"trend":"stable","pvp":7.4,"grinding":7.8,"mobility":7.2,"damage":7.3,"combo":7.5,"versatility":7.4,"ease":7.7,"overall":7.3,"review":"Dark is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Eagle","rarity":"Uncommon","type":"Beast","value":550000,"demand":6.5,"trend":"rising","pvp":7.5,"grinding":7.9,"mobility":7.3,"damage":7.4,"combo":7.6,"versatility":7.5,"ease":7.8,"overall":7.4,"review":"Reworked Falcon replacement with Beast mobility and aerial utility."},{"name":"Diamond","rarity":"Uncommon","type":"Natural","value":600000,"demand":5.2,"trend":"stable","pvp":7.0,"grinding":7.4,"mobility":6.8,"damage":6.9,"combo":7.1,"versatility":7.0,"ease":7.3,"overall":6.8,"review":"Diamond is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Light","rarity":"Rare","type":"Elemental","value":650000,"demand":7.2,"trend":"stable","pvp":7.7,"grinding":8.1,"mobility":7.5,"damage":7.6,"combo":7.8,"versatility":7.7,"ease":8.0,"overall":7.7,"review":"Light is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Rubber","rarity":"Rare","type":"Natural","value":750000,"demand":5.8,"trend":"stable","pvp":7.2,"grinding":7.6,"mobility":7.0,"damage":7.1,"combo":7.3,"versatility":7.2,"ease":7.5,"overall":7.0,"review":"Rubber is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Ghost","rarity":"Rare","type":"Natural","value":940000,"demand":5.6,"trend":"stable","pvp":7.1,"grinding":7.5,"mobility":6.9,"damage":7.0,"combo":7.2,"versatility":7.1,"ease":7.4,"overall":6.9,"review":"Ghost is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Magma","rarity":"Rare","type":"Elemental","value":960000,"demand":7.5,"trend":"rising","pvp":7.8,"grinding":8.2,"mobility":7.6,"damage":7.8,"combo":7.9,"versatility":7.8,"ease":8.2,"overall":7.8,"review":"Magma is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Quake","rarity":"Legendary","type":"Natural","value":1000000,"demand":5.4,"trend":"stable","pvp":7.1,"grinding":7.5,"mobility":6.9,"damage":7.0,"combo":7.2,"versatility":7.1,"ease":7.4,"overall":6.9,"review":"Quake is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Buddha","rarity":"Legendary","type":"Beast","value":10000000,"demand":10,"trend":"rising","pvp":8.8,"grinding":8.3,"mobility":10,"damage":7.5,"combo":8.7,"versatility":7.8,"ease":9.8,"overall":8.9,"review":"Extremely strong grinding utility keeps demand high even when raw trade value is lower."},{"name":"Love","rarity":"Legendary","type":"Natural","value":1300000,"demand":5.7,"trend":"stable","pvp":7.2,"grinding":7.6,"mobility":7.0,"damage":7.1,"combo":7.3,"versatility":7.2,"ease":7.5,"overall":7.0,"review":"Love is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Creation","rarity":"Legendary","type":"Natural","value":1400000,"demand":6.2,"trend":"rising","pvp":7.8,"grinding":8.4,"mobility":7.5,"damage":7.5,"combo":8.2,"versatility":8.3,"ease":7.2,"overall":7.6,"review":"Reworked Barrier fruit with a more useful defensive/control identity."},{"name":"Spider","rarity":"Legendary","type":"Natural","value":1500000,"demand":5.5,"trend":"stable","pvp":7.1,"grinding":7.5,"mobility":6.9,"damage":7.0,"combo":7.2,"versatility":7.1,"ease":7.4,"overall":6.9,"review":"Spider is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Sound","rarity":"Legendary","type":"Natural","value":1700000,"demand":6.0,"trend":"stable","pvp":7.3,"grinding":7.7,"mobility":7.1,"damage":7.2,"combo":7.4,"versatility":7.3,"ease":7.6,"overall":7.2,"review":"Sound is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Phoenix","rarity":"Legendary","type":"Beast","value":1800000,"demand":5.6,"trend":"stable","pvp":7.1,"grinding":7.5,"mobility":6.9,"damage":7.0,"combo":7.2,"versatility":7.1,"ease":7.4,"overall":6.9,"review":"Phoenix is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Portal","rarity":"Legendary","type":"Natural","value":10000000,"demand":10,"trend":"rising","pvp":8.5,"grinding":8.8,"mobility":7.0,"damage":10,"combo":7.8,"versatility":8.9,"ease":8.5,"overall":8.7,"review":"High-demand mobility fruit with strong utility and PvP combo routes."},{"name":"Lightning","rarity":"Legendary","type":"Elemental","value":60000000,"demand":7.0,"trend":"unstable","pvp":8.7,"grinding":9.6,"mobility":8.0,"damage":9.8,"combo":9.5,"versatility":9.6,"ease":6.5,"overall":8.5,"review":"Reworked Rumble line with strong PvP utility, mobility and high post-rework interest."},{"name":"Pain","rarity":"Legendary","type":"Natural","value":10000000,"demand":5.0,"trend":"stable","pvp":7.5,"grinding":8.8,"mobility":6.5,"damage":7.3,"combo":8.5,"versatility":8.9,"ease":6.0,"overall":7.2,"review":"Reworked Pain with new combat options and renewed PvP interest."},{"name":"Blizzard","rarity":"Legendary","type":"Elemental","value":5000000,"demand":5.0,"trend":"stable","pvp":6.9,"grinding":7.3,"mobility":6.7,"damage":6.8,"combo":7.0,"versatility":6.9,"ease":7.2,"overall":6.7,"review":"Blizzard is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Gravity","rarity":"Mythical","type":"Natural","value":10000000,"demand":5.0,"trend":"stable","pvp":7.2,"grinding":8.2,"mobility":6.5,"damage":6.5,"combo":9.0,"versatility":8.0,"ease":6.0,"overall":7.0,"review":"Reworked Gravity with updated abilities and stronger combat identity."},{"name":"Mammoth","rarity":"Mythical","type":"Beast","value":10000000,"demand":5.0,"trend":"stable","pvp":6.9,"grinding":7.3,"mobility":6.7,"damage":6.8,"combo":7.0,"versatility":6.9,"ease":7.2,"overall":6.7,"review":"Mammoth is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"T-Rex","rarity":"Mythical","type":"Beast","value":20000000,"demand":8.0,"trend":"stable","pvp":8.4,"grinding":9.0,"mobility":8.8,"damage":8.0,"combo":9.2,"versatility":8.5,"ease":8.3,"overall":8.5,"review":"T-Rex is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Dough","rarity":"Mythical","type":"Elemental","value":30000000,"demand":9.0,"trend":"stable","pvp":9.0,"grinding":9.8,"mobility":8.8,"damage":9.0,"combo":9.5,"versatility":9.8,"ease":7.6,"overall":9.1,"review":"Dough is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Shadow","rarity":"Mythical","type":"Natural","value":6000000,"demand":5.0,"trend":"stable","pvp":6.9,"grinding":7.3,"mobility":6.7,"damage":6.8,"combo":7.0,"versatility":6.9,"ease":7.2,"overall":6.7,"review":"Shadow is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Venom","rarity":"Mythical","type":"Natural","value":20000000,"demand":8.0,"trend":"stable","pvp":8.0,"grinding":8.4,"mobility":7.8,"damage":7.9,"combo":8.1,"versatility":8.0,"ease":8.3,"overall":8.1,"review":"Venom is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Gas","rarity":"Mythical","type":"Elemental","value":60000000,"demand":8.8,"trend":"stable","pvp":9.0,"grinding":9.4,"mobility":9.1,"damage":8.8,"combo":9.3,"versatility":9.2,"ease":7.3,"overall":8.9,"review":"Gas is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Spirit","rarity":"Mythical","type":"Natural","value":10000000,"demand":7.0,"trend":"stable","pvp":7.7,"grinding":8.1,"mobility":7.5,"damage":7.6,"combo":7.8,"versatility":7.7,"ease":8.0,"overall":7.7,"review":"Spirit is evaluated across trading demand, PvP, grinding, mobility, damage, combo potential, and ease of use."},{"name":"Tiger","rarity":"Mythical","type":"Beast","value":150000000,"demand":9.5,"trend":"rising","pvp":9.6,"grinding":9.8,"mobility":9.0,"damage":9.6,"combo":9.5,"versatility":9.3,"ease":7.8,"overall":9.3,"review":"Reworked Leopard replacement with high-demand Beast gameplay and strong PvP mobility."},{"name":"Yeti","rarity":"Mythical","type":"Beast","value":140000000,"demand":8.9,"trend":"stable","pvp":9.0,"grinding":9.2,"mobility":9.0,"damage":8.7,"combo":9.0,"versatility":8.8,"ease":8.0,"overall":8.8,"review":"High-demand Beast fruit with strong transformation gameplay and mobility."},{"name":"Kitsune","rarity":"Mythical","type":"Beast","value":600000000,"demand":9.7,"trend":"stable","pvp":9.9,"grinding":9.7,"mobility":9.2,"damage":10,"combo":9.6,"versatility":9.5,"ease":8.0,"overall":9.5,"review":"Premium Beast fruit with exceptional demand, mobility and combat utility."},{"name":"Control","rarity":"Mythical","type":"Natural","value":130000000,"demand":8.0,"trend":"rising","pvp":8.8,"grinding":9.5,"mobility":7.2,"damage":8.5,"combo":9.0,"versatility":9.6,"ease":5.8,"overall":8.3,"review":"Reworked Control with a major gameplay overhaul and high technical skill ceiling."},{"name":"Dragon (West)","rarity":"Mythical","type":"Beast","value":5130000000,"demand":9.8,"trend":"rising","pvp":10,"grinding":10,"mobility":10,"damage":10,"combo":9.6,"versatility":8.0,"ease":9.9,"overall":9.7,"review":"One of the current top physical trade assets after the Dragon rework."},{"name":"Dragon (East)","rarity":"Mythical","type":"Beast","value":4680000000,"demand":9.8,"trend":"rising","pvp":10,"grinding":10,"mobility":10,"damage":10,"combo":9.6,"versatility":8.0,"ease":9.9,"overall":9.7,"review":"One of the current top physical trade assets after the Dragon rework."},{"name":"+1 Fruit Storage","rarity":"Gamepass","type":"Gamepass","value":190000000,"demand":10.0,"trend":"stable","pvp":10.0,"grinding":10,"mobility":5,"damage":3,"combo":3,"versatility":10.0,"ease":9,"overall":7.9,"review":"Stackable gamepass used to increase fruit storage.","category":"Gamepass","robux":400},{"name":"2x Mastery","rarity":"Gamepass","type":"Gamepass","value":180000000,"demand":10.0,"trend":"stable","pvp":10.0,"grinding":10,"mobility":5,"damage":3,"combo":3,"versatility":10.0,"ease":9,"overall":7.9,"review":"Doubles mastery EXP gained from NPCs.","category":"Gamepass","robux":450},{"name":"2x Money","rarity":"Gamepass","type":"Gamepass","value":180000000,"demand":10.0,"trend":"stable","pvp":10.0,"grinding":10,"mobility":5,"damage":3,"combo":3,"versatility":10.0,"ease":9,"overall":7.9,"review":"Doubles Money earned from NPCs and quests.","category":"Gamepass","robux":450},{"name":"2x Boss Drops","rarity":"Gamepass","type":"Gamepass","value":120000000,"demand":6.0,"trend":"stable","pvp":6.0,"grinding":6.2,"mobility":5,"damage":3,"combo":3,"versatility":6.0,"ease":9,"overall":6.2,"review":"Doubles the chance for bosses to drop items.","category":"Gamepass","robux":350},{"name":"Fast Boats","rarity":"Gamepass","type":"Gamepass","value":120000000,"demand":9.0,"trend":"stable","pvp":9.0,"grinding":9.2,"mobility":9,"damage":3,"combo":3,"versatility":9.0,"ease":9,"overall":8.1,"review":"Adds the fast Miracle and Sentinel boats.","category":"Gamepass","robux":350},{"name":"Dark Blade","rarity":"Gamepass","type":"Gamepass","value":510000000,"demand":9.0,"trend":"stable","pvp":9.0,"grinding":9.2,"mobility":5,"damage":9,"combo":8,"versatility":9.0,"ease":9,"overall":8.3,"review":"Permanent Dark Blade gamepass.","category":"Gamepass","robux":1200},{"name":"Fruit Notifier","rarity":"Gamepass","type":"Gamepass","value":1450000000,"demand":9.0,"trend":"stable","pvp":9.0,"grinding":9.2,"mobility":5,"damage":3,"combo":3,"versatility":9.0,"ease":9,"overall":7.5,"review":"Notifies you when a fruit spawns in your server.","category":"Gamepass","robux":2700},{"name":"Mythical Scrolls","rarity":"Gamepass","type":"Gamepass","value":400000000,"demand":4.0,"trend":"stable","pvp":4.0,"grinding":4.2,"mobility":5,"damage":3,"combo":3,"versatility":4.0,"ease":9,"overall":5.3,"review":"Gamepass scroll item used in the current trading market.","category":"Gamepass","robux":500},{"name":"Legendary Scrolls","rarity":"Gamepass","type":"Gamepass","value":230000000,"demand":3.0,"trend":"stable","pvp":3.0,"grinding":3.2,"mobility":5,"damage":3,"combo":3,"versatility":3.0,"ease":9,"overall":4.8,"review":"Gamepass scroll item used in the current trading market.","category":"Gamepass","robux":200}];
+
+let yourOffer=[];
+let theirOffer=[];
+
+const specLabels=[
+["pvp","PvP"],
+["demand","Demand"],
+["grinding","Grinding"],
+["mobility","Mobility"],
+["damage","Damage"],
+["combo","Combo Potential"],
+["versatility","Versatility"],
+["ease","Ease of Use"]
+];
+
+function formatValue(v){
+if(v>=1000000000)
+return (v/1000000000).toFixed(2).replace(/\.00$/,"")+"B";
+
+if(v>=1000000)
+return (v/1000000).toFixed(2).replace(/\.00$/,"")+"M";
+
+if(v>=1000)
+return (v/1000).toFixed(2).replace(/\.00$/,"")+"K";
+
+return Number(v).toLocaleString();
+}
+
+function calculateTotal(o){
+return o.reduce((t,f)=>t+Number(f.value||0),0);
+}
+
+function addToOffer(name,side){
+
+const f=fruits.find(x=>x.name===name);
+
+if(!f)return;
+
+(side==="your"?yourOffer:theirOffer).push(f);
+
+updateTrade();
+}
+
+function removeFromOffer(i,side){
+
+(side==="your"?yourOffer:theirOffer).splice(i,1);
+
+updateTrade();
+}
+
+function clearTrade(){
+
+yourOffer=[];
+theirOffer=[];
+
+updateTrade();
+}
+
+function renderOffer(o,id,side){
+
+const c=document.getElementById(id);
+
+c.innerHTML="";
+
+if(!o.length){
+
+c.innerHTML='<div class="empty">Add fruits from the database below.</div>';
+
+return;
+}
+
+o.forEach((f,i)=>{
+
+const d=document.createElement("div");
+
+d.className="offer-item";
+
+d.innerHTML=`
+<button class="remove-item" onclick="removeFromOffer(${i},'${side}')">×</button>
+<div class="offer-item-name">${f.name}</div>
+<div class="offer-item-value">${formatValue(f.value)}</div>
+`;
+
+c.appendChild(d);
+
+});
+}
+
+function updateTrade(){
+
+const y=calculateTotal(yourOffer);
+const t=calculateTotal(theirOffer);
+
+document.getElementById("yourTotal").textContent=formatValue(y);
+document.getElementById("theirTotal").textContent=formatValue(t);
+
+renderOffer(yourOffer,"yourOffer","your");
+renderOffer(theirOffer,"theirOffer","their");
+
+calculateResult(y,t);
+}
+
+function calculateResult(y,t){
+
+const r=document.getElementById("tradeResult");
+const d=document.getElementById("tradeDifference");
+
+r.className="result-value result-neutral";
+
+if(!y&&!t){
+
+r.textContent="Add items";
+d.textContent="Difference: 0";
+
+return;
+}
+
+if(!y){
+
+r.textContent="Add Your Offer";
+d.textContent=`Their Value: ${formatValue(t)}`;
+
+return;
+}
+
+if(!t){
+
+r.textContent="Add Their Offer";
+d.textContent=`Your Value: ${formatValue(y)}`;
+
+return;
+}
+
+const diff=t-y;
+const ratio=t/y;
+
+d.textContent=
+`Difference: ${diff>=0?"+":""}${formatValue(diff)} • ${Math.abs((ratio-1)*100).toFixed(1)}%`;
+
+if(ratio>=1.15){
+
+r.textContent="BIG WIN 🔥";
+r.className="result-value result-win";
+
+}else if(ratio>=1.05){
+
+r.textContent="SMALL WIN 📈";
+r.className="result-value result-win";
+
+}else if(ratio>=.95){
+
+r.textContent="FAIR TRADE ⚖️";
+r.className="result-value result-fair";
+
+}else if(ratio>=.85){
+
+r.textContent="SMALL LOSE 📉";
+r.className="result-value result-lose";
+
+}else{
+
+r.textContent="BIG LOSE 💀";
+r.className="result-value result-lose";
+
+}
+}
+
+function bar(label,val){
+
+return `
+<div class="spec">
+<span class="spec-label">${label}</span>
+<span class="spec-value">${val}/10</span>
+<div class="rating-bar">
+<div class="rating-fill" style="width:${val*10}%"></div>
+</div>
+</div>
+`;
+}
+
+function renderDatabase(){
+
+const grid=document.getElementById("fruitGrid");
+
+const s=document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
+const rarity=document.getElementById("rarityFilter").value;
+const category=document.getElementById("categoryFilter").value;
+const sort=document.getElementById("sortFilter").value;
+
+let list=fruits.filter(f=>
+(f.name.toLowerCase().includes(s)||f.type.toLowerCase().includes(s)) &&
+(rarity==="all"||f.rarity===rarity) &&
+(category==="all"||f.category===category)
+);
+
+list.sort((a,b)=>
+sort==="name"
+?a.name.localeCompare(b.name)
+:sort==="valueHigh"
+?b.value-a.value
+:sort==="valueLow"
+?a.value-b.value
+:sort==="rating"
+?b.overall-a.overall
+:b.demand-a.demand
+);
+
+grid.innerHTML="";
+
+if(!list.length){
+
+grid.innerHTML=
+'<div class="no-results">No fruits match your search/filter.</div>';
+
+return;
+}
+
+list.forEach(f=>{
+
+const trendClass=
+f.trend==="rising"
+?"trend-up"
+:f.trend==="dropping"
+?"trend-down"
+:"trend-flat";
+
+const trendIcon=
+f.trend==="rising"
+?"▲ Rising"
+:f.trend==="dropping"
+?"▼ Dropping"
+:f.trend==="unstable"
+?"◆ Unstable"
+:"▶ Stable";
+
+const card=document.createElement("div");
+
+card.className="fruit-card";
+
+const mini=specLabels
+.map(([k,l])=>bar(l,f[k]))
+.join("");
+
+card.innerHTML=`
+
+<div class="fruit-name">
+${f.name}
+</div>
+
+<div class="fruit-meta">
+${f.category} • ${f.rarity} • ${f.type}
+</div>
+
+<div class="fruit-value">
+${formatValue(f.value)}
+${f.robux ? `
+<span style="font-size:12px;color:var(--muted)">
+• ${f.robux.toLocaleString()} R$
+</span>` : ""}
+</div>
+
+<div class="rating">
+Overall: ${f.overall}/10
+
+<div class="rating-bar">
+<div
+class="rating-fill"
+style="width:${f.overall*10}%">
+</div>
+</div>
+
+</div>
+
+<div class="spec-list">
+${mini}
+</div>
+
+<div class="review">
+${f.review}
+</div>
+
+<div class="card-actions">
+
+<button
+class="add-btn"
+onclick="addToOffer('${f.name.replace(/'/g,"\\'")}','your')">
++ Your
+</button>
+
+<button
+class="add-btn their"
+onclick="addToOffer('${f.name.replace(/'/g,"\\'")}','their')">
++ Their
+</button>
+
+</div>
+
+<button
+class="review-btn"
+onclick="openReview('${f.name.replace(/'/g,"\\'")}')">
+View Full Details
+</button>
+
+`;
+
+grid.appendChild(card);
+
+});
+}
+
+function openReview(name){
+
+const f=fruits.find(x=>x.name===name);
+
+if(!f)return;
+
+document.getElementById("modalTitle").textContent=f.name;
+
+document.getElementById("modalMeta").textContent=
+`${f.category} • ${f.rarity} • ${f.type}`;
+
+document.getElementById("modalValue").textContent=
+`Trade Value: ${formatValue(f.value)}${f.robux ? ` • ${f.robux.toLocaleString()} Robux` : ""}`;
+
+document.getElementById("modalTrend").innerHTML=`
+
+<span class="${
+f.trend==="rising"
+?"trend-up"
+:f.trend==="dropping"
+?"trend-down"
+:"trend-flat"
+}">
+
+<strong>Trend:</strong>
+${f.trend.toUpperCase()}
+
+</span>
+`;
+
+document.getElementById("modalReview").textContent=f.review;
+
+document.getElementById("modalSpecs").innerHTML=
+specLabels
+.map(([k,l])=>`
+
+<div class="modal-spec">
+
+<small>${l}</small>
+
+<strong>
+${f[k]}/10
+</strong>
+
+<div class="rating-bar">
+
+<div
+class="rating-fill"
+style="width:${f[k]*10}%">
+</div>
+
+</div>
+
+</div>
+
+`)
+.join("");
+
+document.getElementById("modalAdvice").innerHTML=`
+
+<strong>Trading note:</strong>
+Demand is a market signal, not an official price.
+Use the value as a reference and expect real offers to vary.
+
+`;
+
+document
+.getElementById("reviewModal")
+.classList
+.remove("hidden");
+}
+
+function closeReview(e){
+
+if(
+e &&
+e.target!==e.currentTarget &&
+!e.target.classList.contains("modal-close")
+)return;
+
+document
+.getElementById("reviewModal")
+.classList
+.add("hidden");
+}
+
+document
+.getElementById("searchInput")
+.addEventListener("input",renderDatabase);
+
+document
+.getElementById("rarityFilter")
+.addEventListener("change",renderDatabase);
+
+document
+.getElementById("categoryFilter")
+.addEventListener("change",renderDatabase);
+
+document
+.getElementById("sortFilter")
+.addEventListener("change",renderDatabase);
+
+renderDatabase();
+updateTrade();
+
+</script>
+
+</body>
+</html>

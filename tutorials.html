@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blox Fruits Tutorials</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    color:white;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(0,229,255,.15), transparent 30%),
+        radial-gradient(circle at 85% 70%, rgba(37,99,235,.25), transparent 35%),
+        linear-gradient(135deg,#020617,#0f172a,#172554,#1d4ed8);
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(0,229,255,.035) 50%,
+            transparent 100%
+        );
+    background-size:200% 200%;
+    animation:backgroundMove 10s ease-in-out infinite;
+    z-index:-1;
+}
+
+@keyframes backgroundMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:relative;
+    text-align:center;
+    padding:55px 20px 45px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(2,6,23,.95),
+            rgba(15,23,42,.75)
+        );
+
+    border-bottom:1px solid rgba(0,229,255,.25);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.5);
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    left:10%;
+    right:10%;
+    bottom:-1px;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #00e5ff,
+        #2563eb,
+        #00e5ff,
+        transparent
+    );
+
+    box-shadow:0 0 15px #00e5ff;
+}
+
+.header h1{
+    font-size:clamp(35px,6vw,65px);
+    font-style:italic;
+    letter-spacing:5px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #00e5ff,
+        #60a5fa,
+        #ffffff
+    );
+
+    background-size:250% auto;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    animation:titleShine 5s linear infinite;
+}
+
+.header p{
+    margin-top:15px;
+    color:#cbd5e1;
+    font-size:17px;
+    letter-spacing:1px;
+}
+
+@keyframes titleShine{
+
+    0%{
+        background-position:0% center;
+    }
+
+    100%{
+        background-position:250% center;
+    }
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:92%;
+    max-width:1500px;
+    margin:auto;
+    padding:45px 0 60px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    position:relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.035)
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.intro::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:25px;
+    bottom:25px;
+    width:4px;
+
+    background:#00e5ff;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 0 15px #00e5ff;
+}
+
+.intro h2{
+    color:#00e5ff;
+    font-size:30px;
+    margin-bottom:14px;
+}
+
+.intro p{
+    color:#dbeafe;
+    line-height:1.8;
+    font-size:18px;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(430px,1fr));
+
+    gap:28px;
+}
+
+
+/* =========================
+   VIDEO CARDS
+========================= */
+
+.card{
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.11),
+            rgba(255,255,255,.035)
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-radius:25px;
+
+    padding:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.07);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    background:linear-gradient(
+        90deg,
+        #00e5ff,
+        #2563eb,
+        #7dd3fc
+    );
+
+    opacity:.8;
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+
+    border-color:rgba(0,229,255,.45);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.5),
+        0 0 25px rgba(0,229,255,.12);
+}
+
+.card:hover::before{
+    box-shadow:0 0 20px #00e5ff;
+}
+
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.card h2{
+    color:#f8fafc;
+
+    font-size:23px;
+
+    margin-bottom:18px;
+
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+}
+
+.card h2::first-letter{
+    color:#00e5ff;
+}
+
+
+/* =========================
+   VIDEO
+========================= */
+
+.video{
+    display:block;
+
+    width:100%;
+    aspect-ratio:16 / 9;
+
+    height:auto;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#020617;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.45);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.card:hover .video{
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.6),
+        0 0 15px rgba(0,229,255,.12);
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.card p{
+    margin-top:17px;
+
+    color:#cbd5e1;
+
+    line-height:1.7;
+
+    font-size:16px;
+}
+
+
+/* =========================
+   VIDEO NUMBER BADGE
+========================= */
+
+.card::after{
+    content:"TUTORIAL";
+
+    position:absolute;
+
+    top:19px;
+    right:20px;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+    color:#7dd3fc;
+
+    background:rgba(0,229,255,.08);
+
+    border:1px solid rgba(0,229,255,.2);
+
+    padding:5px 9px;
+
+    border-radius:20px;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back{
+    text-align:center;
+    margin-top:50px;
+}
+
+.back a{
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0284c7,
+            #2563eb
+        );
+
+    padding:15px 32px;
+
+    border-radius:50px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    font-weight:bold;
+
+    letter-spacing:.5px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.35),
+        0 0 15px rgba(37,99,235,.2);
+
+    transition:.3s;
+}
+
+.back a:hover{
+    transform:translateY(-4px) scale(1.03);
+
+    background:
+        linear-gradient(
+            135deg,
+            #00bfff,
+            #2563eb
+        );
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.5),
+        0 0 25px rgba(0,229,255,.3);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    text-align:center;
+
+    padding:30px 20px;
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    background:rgba(2,6,23,.65);
+
+    color:#94a3b8;
+
+    font-size:14px;
+}
+
+.footer strong{
+    color:#00e5ff;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#020617;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(
+        #0284c7,
+        #2563eb
+    );
+
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#00e5ff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .header{
+        padding:40px 15px 35px;
+    }
+
+    .header h1{
+        font-size:35px;
+        letter-spacing:2px;
+    }
+
+    .header p{
+        font-size:14px;
+    }
+
+    .container{
+        width:94%;
+        padding-top:30px;
+    }
+
+    .intro{
+        padding:25px;
+    }
+
+    .intro h2{
+        font-size:25px;
+    }
+
+    .intro p{
+        font-size:16px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:22px;
+    }
+
+    .card{
+        padding:17px;
+        border-radius:21px;
+    }
+
+    .card h2{
+        font-size:20px;
+        padding-right:70px;
+    }
+
+    .video{
+        border-radius:14px;
+    }
+
+    .card p{
+        font-size:15px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>🎥 BLOX FRUITS TUTORIALS</h1>
+
+    <p>
+        Your ultimate video guide for progression, PvP & endgame
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- INTRO -->
+
+<div class="intro">
+
+    <h2>🔥 Blox Fruits Tutorial Center</h2>
+
+    <p>
+        Welcome to the Blox Fruits Tutorials section.
+        Explore carefully selected video guides covering
+        progression, PvP, fruits, weapons, Race V4 and
+        important endgame content.
+    </p>
+
+</div>
+
+
+<!-- VIDEOS -->
+
+<div class="grid">
+
+
+<!-- RACE V4 -->
+
+<div class="card">
+
+<h2>⚡ Race V4 Complete Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/g2z4N-UW7bs"
+allowfullscreen>
+</iframe>
+
+<p>
+A tutorial covering Race V4 progression and the
+important steps required to advance your race.
+</p>
+
+</div>
+
+
+<!-- RACE V4 REQUIREMENTS -->
+
+<div class="card">
+
+<h2>⚡ Race V4 Requirements</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/9h-KVoRciGI"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn about the requirements and progression involved
+in unlocking Race V4.
+</p>
+
+</div>
+
+
+<!-- BEGINNER -->
+
+<div class="card">
+
+<h2>📖 Beginner Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/m2PhyGa5Yds"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn the basic mechanics of Blox Fruits, including
+quests, combat, fruits and leveling.
+</p>
+
+</div>
+
+
+<!-- FIRST SEA -->
+
+<div class="card">
+
+<h2>🌊 First Sea Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/odC-xgD3PnI"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn how to progress efficiently through the First Sea.
+The First Sea covers levels 1–700.
+</p>
+
+</div>
+
+
+<!-- SECOND SEA -->
+
+<div class="card">
+
+<h2>🌊 Second Sea Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/s_YtRki0au4"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn about Second Sea progression, raids, trading and
+other important content.
+</p>
+
+</div>
+
+
+<!-- THIRD SEA -->
+
+<div class="card">
+
+<h2>🌊 Third Sea Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/NtdsN0Mj5cM"
+allowfullscreen>
+</iframe>
+
+<p>
+Explore endgame progression, powerful items, bosses
+and advanced content.
+</p>
+
+</div>
+
+
+<!-- PVP -->
+
+<div class="card">
+
+<h2>⚔️ PvP Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/DOV7iMr3TRA"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn movement, aiming, combo timing and how to improve
+your PvP skills.
+</p>
+
+</div>
+
+
+<!-- DOUGH -->
+
+<div class="card">
+
+<h2>🍩 Dough Combo Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/0Uukc02PWTo"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn Dough combo techniques and how to combine its
+abilities with other equipment.
+</p>
+
+</div>
+
+
+<!-- KITSUNE -->
+
+<div class="card">
+
+<h2>🦊 Kitsune Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/wvAgbxjEZgg"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn about Kitsune's abilities, movement and combat
+potential.
+</p>
+
+</div>
+
+
+<!-- DRAGON -->
+
+<div class="card">
+
+<h2>🐉 Dragon Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/zzYlJpA6Yb4"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn how Dragon works and how players can use its
+abilities effectively.
+</p>
+
+</div>
+
+
+<!-- MIRAGE -->
+
+<div class="card">
+
+<h2>🗺️ Mirage Island Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/W--pnACCY-c"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn about Mirage Island, its secrets and its
+importance for advanced progression.
+</p>
+
+</div>
+
+
+<!-- LEVIATHAN -->
+
+<div class="card">
+
+<h2>🐉 Leviathan Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/mom7nBaIRiM"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn about the Leviathan hunt, the Frozen Dimension
+and the rewards available from the encounter.
+</p>
+
+</div>
+
+
+<!-- SOUL GUITAR -->
+
+<div class="card">
+
+<h2>🎸 Soul Guitar Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/IwjZAD4gMVM"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn how to obtain Soul Guitar and understand its
+mechanics and requirements.
+</p>
+
+</div>
+
+
+<!-- CDK -->
+
+<div class="card">
+
+<h2>⚔️ Cursed Dual Katana Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/OR1390YhsGQ"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn how to obtain the Cursed Dual Katana and complete
+the required progression.
+</p>
+
+</div>
+
+
+<!-- GODHUMAN -->
+
+<div class="card">
+
+<h2>🥋 Godhuman Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/R7naWSJPVAE"
+allowfullscreen>
+</iframe>
+
+<p>
+Learn how to work toward the Godhuman fighting style
+and prepare for advanced combat.
+</p>
+
+</div>
+
+
+<!-- START TO END -->
+
+<div class="card">
+
+<h2>🚀 Level 1 → Endgame Guide</h2>
+
+<iframe
+class="video"
+src="https://www.youtube.com/embed/LIASqUcjLoI"
+allowfullscreen>
+</iframe>
+
+<p>
+A complete progression guide covering the journey from
+the beginning of the game toward endgame content.
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- BACK BUTTON -->
+
+<div class="back">
+
+<a href="bloxfruit.html">
+⬅ Back To Home
+</a>
+
+</div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    <strong>BLOX FRUITS ULTIMATE GUIDE</strong>
+
+    <br><br>
+
+    Created by ARNAV MAURYA © 2026
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blox Fruits - Fruits Guide</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top left, #163b70 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #102a56 0%, transparent 40%),
+        #07111f;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    position: relative;
+    text-align: center;
+    padding: 55px 20px 45px;
+
+    background: rgba(5, 15, 30, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+.header h1 {
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    background: linear-gradient(90deg, #ffffff, #62d9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header p {
+    margin-top: 12px;
+    color: #9fb4cc;
+    font-size: 16px;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: min(1400px, 92%);
+    margin: auto;
+    padding: 45px 0 60px;
+}
+
+
+/* =========================
+   ABOUT BOX
+========================= */
+
+.about {
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.09);
+
+    border-radius: 20px;
+    padding: 30px;
+
+    margin-bottom: 35px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.about h2 {
+    color: #4ddcff;
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+.about p {
+    color: #c6d4e3;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+
+/* =========================
+   FRUIT GRID
+========================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================
+   FRUIT CARD
+========================= */
+
+.fruit {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.035)
+        );
+
+    border: 1px solid rgba(255,255,255,0.09);
+
+    border-radius: 20px;
+
+    padding: 26px;
+
+    min-height: 245px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* glowing corner */
+
+.fruit::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: -50px;
+    right: -50px;
+
+    background: #00c8ff;
+
+    opacity: 0.08;
+
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+
+/* hover */
+
+.fruit:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(0,220,255,0.45);
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,0.35),
+        0 0 25px rgba(0,200,255,0.08);
+}
+
+.fruit:hover::before {
+    transform: scale(2);
+}
+
+
+/* =========================
+   FRUIT NUMBER
+========================= */
+
+.number {
+    color: #5a7089;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   FRUIT NAME
+========================= */
+
+.fruit h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.fruit p {
+    color: #aebfd0;
+    line-height: 1.65;
+    font-size: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   INFO ROW
+========================= */
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: auto;
+}
+
+
+/* =========================
+   TIER
+========================= */
+
+.tier {
+    display: inline-block;
+
+    padding: 7px 13px;
+
+    border-radius: 8px;
+
+    background: rgba(0,200,255,0.1);
+
+    border: 1px solid rgba(0,200,255,0.25);
+
+    color: #62dcff;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   TYPE
+========================= */
+
+.type {
+    color: #71869d;
+    font-size: 13px;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back {
+    text-align: center;
+    margin-top: 45px;
+}
+
+.back a {
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: white;
+
+    background: #0d2138;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    padding: 14px 28px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    transition: 0.25s;
+}
+
+.back a:hover {
+    background: #143654;
+
+    border-color: #43d9ff;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    text-align: center;
+
+    padding: 25px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    background: rgba(3,10,20,0.6);
+
+    color: #71869d;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 40px 15px;
+    }
+
+    .header h1 {
+        letter-spacing: 1px;
+    }
+
+    .container {
+        width: 94%;
+        padding-top: 30px;
+    }
+
+    .about {
+        padding: 23px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fruit {
+        min-height: auto;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <h1>🍎 Fruits Guide</h1>
+
+    <p>
+        Explore fruits, tiers, abilities and their best uses.
+    </p>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about">
+
+    <h2>About Blox Fruits</h2>
+
+    <p>
+        Blox Fruits give players unique abilities and powers.
+        Different fruits are useful for different situations,
+        including grinding, PvP, mobility and sea events.
+        This guide gives a quick overview of some popular fruits.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     FRUIT GRID
+========================= -->
+
+<section class="grid">
+
+
+<div class="fruit">
+
+    <div class="number">01</div>
+
+    <h3>🥇 Buddha</h3>
+
+    <p>
+        One of the strongest choices for grinding,
+        especially because of its powerful transformation.
+    </p>
+
+    <div class="info">
+        <span class="tier">S+ Tier</span>
+        <span class="type">Beast</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">02</div>
+
+    <h3>🦊 Kitsune</h3>
+
+    <p>
+        A powerful Beast fruit with excellent mobility,
+        damage and PvP potential.
+    </p>
+
+    <div class="info">
+        <span class="tier">S+ Tier</span>
+        <span class="type">Beast</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">03</div>
+
+    <h3>🐉 Dragon</h3>
+
+    <p>
+        A powerful transformation fruit capable of
+        dealing massive damage.
+    </p>
+
+    <div class="info">
+        <span class="tier">S+ Tier</span>
+        <span class="type">Beast</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">04</div>
+
+    <h3>🍩 Dough</h3>
+
+    <p>
+        A popular PvP fruit with strong combo potential
+        and powerful awakened abilities.
+    </p>
+
+    <div class="info">
+        <span class="tier">S Tier</span>
+        <span class="type">Elemental</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">05</div>
+
+    <h3>🌀 Portal</h3>
+
+    <p>
+        Excellent mobility fruit with teleportation
+        abilities and strong combo potential.
+    </p>
+
+    <div class="info">
+        <span class="tier">S Tier</span>
+        <span class="type">Natural</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">06</div>
+
+    <h3>🔥 Magma</h3>
+
+    <p>
+        High damage fruit that is especially useful
+        for grinding and sea events.
+    </p>
+
+    <div class="info">
+        <span class="tier">S Tier</span>
+        <span class="type">Elemental</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">07</div>
+
+    <h3>💡 Light</h3>
+
+    <p>
+        One of the best early-game fruits thanks to
+        its speed, flight and easy grinding.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Elemental</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">08</div>
+
+    <h3>❄️ Ice</h3>
+
+    <p>
+        Beginner-friendly fruit with useful freezes
+        and strong stun abilities.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Elemental</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">09</div>
+
+    <h3>⚡ Rumble</h3>
+
+    <p>
+        High-skill fruit with excellent stuns,
+        mobility and PvP potential.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Elemental</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">10</div>
+
+    <h3>👻 Spirit</h3>
+
+    <p>
+        Unique fruit that uses powerful summoned
+        companions during combat.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Natural</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">11</div>
+
+    <h3>☠️ Venom</h3>
+
+    <p>
+        High-damage poison attacks combined with
+        a powerful transformation.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Natural</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">12</div>
+
+    <h3>🐆 Leopard</h3>
+
+    <p>
+        Fast Beast fruit with strong attacks and
+        a powerful transformation.
+    </p>
+
+    <div class="info">
+        <span class="tier">S Tier</span>
+        <span class="type">Beast</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">13</div>
+
+    <h3>🦖 T-Rex</h3>
+
+    <p>
+        Strong transformation fruit with powerful
+        attacks and good combat potential.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Beast</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">14</div>
+
+    <h3>🐘 Mammoth</h3>
+
+    <p>
+        A tanky Beast fruit with powerful attacks
+        during its transformation.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Beast</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">15</div>
+
+    <h3>🌨️ Blizzard</h3>
+
+    <p>
+        Excellent area-control fruit with powerful
+        attacks and useful PvP abilities.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Elemental</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">16</div>
+
+    <h3>🎯 Control</h3>
+
+    <p>
+        A high-skill fruit with unique mechanics
+        and a large number of abilities.
+    </p>
+
+    <div class="info">
+        <span class="tier">B Tier</span>
+        <span class="type">Natural</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">17</div>
+
+    <h3>🌑 Shadow</h3>
+
+    <p>
+        Dark-themed fruit with powerful attacks
+        and strong combat potential.
+    </p>
+
+    <div class="info">
+        <span class="tier">A Tier</span>
+        <span class="type">Natural</span>
+    </div>
+
+</div>
+
+
+<div class="fruit">
+
+    <div class="number">18</div>
+
+    <h3>🕊️ Phoenix</h3>
+
+    <p>
+        Support-focused fruit with healing,
+        mobility and transformation abilities.
+    </p>
+
+    <div class="info">
+        <span class="tier">B Tier</span>
+        <span class="type">Beast</span>
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     BACK BUTTON
+========================= -->
+
+<div class="back">
+
+    <a href="bloxfruit.html">
+        ← Back To Home
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    Blox Fruits Ultimate Guide © 2026
+
+</footer>
+
+
+</body>
+</html>

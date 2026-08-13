@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blox Fruits | Introduction</title>
+
+<style>
+
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f5f7ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.25), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(0, 229, 255, 0.13), transparent 25%),
+        linear-gradient(145deg, #050914 0%, #0a1020 45%, #07162c 100%);
+}
+
+
+/* ================================
+   BACKGROUND GRID
+================================ */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+
+    mask-image: linear-gradient(to bottom, black, transparent);
+
+    z-index: -1;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    background: rgba(4, 8, 18, 0.8);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+}
+
+.header-inner {
+    width: min(1400px, 92%);
+    min-height: 78px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.page-label {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 80px 0 55px;
+
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 16px;
+
+    margin-bottom: 23px;
+
+    border-radius: 999px;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.22);
+
+    color: #7dd3fc;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 72px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 23px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #7dd3fc,
+            #38bdf8
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #9eacc2;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* ================================
+   CONTAINER
+================================ */
+
+.container {
+    width: min(1100px, 92%);
+
+    margin: auto;
+}
+
+
+/* ================================
+   INFORMATION CARDS
+================================ */
+
+.card {
+    position: relative;
+
+    padding: 32px;
+
+    margin-bottom: 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.2);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    top: -85px;
+    right: -85px;
+
+    border-radius: 50%;
+
+    background: rgba(56,189,248,0.07);
+
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(56,189,248,0.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(56,189,248,0.075),
+            rgba(255,255,255,0.03)
+        );
+}
+
+.card:hover::before {
+    transform: scale(1.4);
+}
+
+
+/* ================================
+   CARD HEADER
+================================ */
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.card-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: rgba(56,189,248,0.1);
+
+    border: 1px solid rgba(56,189,248,0.17);
+
+    font-size: 24px;
+}
+
+.card h2 {
+    color: #f8fafc;
+
+    font-size: 23px;
+}
+
+.card p {
+    color: #a7b3c6;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+}
+
+
+/* ================================
+   HIGHLIGHT TEXT
+================================ */
+
+.highlight {
+    color: #7dd3fc;
+
+    font-weight: 700;
+}
+
+
+/* ================================
+   BACK BUTTON
+================================ */
+
+.back {
+    text-align: center;
+
+    padding: 25px 0 65px;
+}
+
+.backbtn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 13px 23px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    color: #e0f2fe;
+
+    background: rgba(56,189,248,0.08);
+
+    border: 1px solid rgba(56,189,248,0.2);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.backbtn:hover {
+    background: #38bdf8;
+
+    border-color: #38bdf8;
+
+    color: #03111d;
+
+    transform: translateY(-3px);
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,0.07);
+
+    background: rgba(2,6,15,0.75);
+}
+
+.footer h3 {
+    color: #cbd5e1;
+
+    font-size: 16px;
+}
+
+
+/* ================================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050914;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e4f72;
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        min-height: 68px;
+    }
+
+    .page-label {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 0 40px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .card {
+        padding: 23px;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+
+    .card p {
+        font-size: 15px;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-badge {
+        font-size: 11px;
+    }
+
+    .card {
+        border-radius: 17px;
+    }
+
+    .card-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 21px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================================
+     HEADER
+================================ -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="bloxfruit.html" class="logo">
+            BLOX <span>FRUITS</span>
+        </a>
+
+        <div class="page-label">
+            Introduction
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     HERO
+================================ -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+        🌊 Getting Started
+    </div>
+
+    <h1>
+        BLOX FRUITS
+        <br>
+        INTRODUCTION
+    </h1>
+
+    <p>
+        Everything a new player should know before beginning
+        their journey through the world of Blox Fruits.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ================================
+     WHAT IS BLOX FRUITS
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🌊
+        </div>
+
+        <h2>What is Blox Fruits?</h2>
+
+    </div>
+
+    <p>
+        Blox Fruits is one of Roblox's most famous adventure games.
+        It is inspired by the anime One Piece and allows players to
+        explore huge islands, complete quests, defeat bosses, and
+        become stronger through training and battles.
+    </p>
+
+</div>
+
+
+<!-- ================================
+     BLOX FRUITS POWERS
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🍎
+        </div>
+
+        <h2>Blox Fruits Powers</h2>
+
+    </div>
+
+    <p>
+        Special fruits known as Blox Fruits give players unique
+        powers. Some fruits allow players to control fire, ice,
+        light, magma, dragons, and many other amazing abilities.
+        Each fruit has different strengths and weaknesses.
+    </p>
+
+</div>
+
+
+<!-- ================================
+     FIGHTING STYLES
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            ⚔️
+        </div>
+
+        <h2>Fighting Styles</h2>
+
+    </div>
+
+    <p>
+        Players can use swords, guns, fighting styles, and fruit
+        powers. Combining these abilities creates powerful combat
+        builds for both grinding and PvP battles.
+    </p>
+
+</div>
+
+
+<!-- ================================
+     DIFFERENT SEAS
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🏝️
+        </div>
+
+        <h2>Different Seas</h2>
+
+    </div>
+
+    <p>
+        The game contains multiple seas filled with islands,
+        challenges, bosses, and secrets. As players level up,
+        they unlock new seas and gain access to stronger enemies
+        and better rewards.
+    </p>
+
+</div>
+
+
+<!-- ================================
+     GOAL OF THE GAME
+================================ -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            👑
+        </div>
+
+        <h2>Goal of the Game</h2>
+
+    </div>
+
+    <p>
+        The main goal is to become stronger, collect powerful
+        fruits, awaken abilities, defeat bosses, and reach the
+        highest level possible. Many players also enjoy trading,
+        PvP battles, and collecting rare items.
+    </p>
+
+</div>
+
+
+<!-- ================================
+     BACK
+================================ -->
+
+<div class="back">
+
+    <a href="bloxfruit.html" class="backbtn">
+        ← Back To Blox Fruits
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================ -->
+
+<footer class="footer">
+
+    <h3>
+        Blox Fruits Ultimate Guide © 2026
+    </h3>
+
+</footer>
+
+
+</body>
+</html>
